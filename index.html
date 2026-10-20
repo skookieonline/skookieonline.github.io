@@ -142,9 +142,25 @@
   <!-- Visitor counter -->
 <div class="visitor-counter">
   <h3>YOU ARE VISITOR #</h3>
-  <p id="visitor-count">Counter unavailable</p>
+  <span id="visitor-count">...</span>
   <p>Thanks for visiting!! :3</p>
 </div>
+
+<script>
+  function showVisitorCount(data) {
+    document.getElementById("visitor-count").textContent =
+      data.count.toLocaleString();
+  }
+
+  const counterScript = document.createElement("script");
+  counterScript.src =
+    "https://script.google.com/macros/s/AKfycbznsj4URfEEcPCop59EMZ-HE5YWoNCXcQUBsvAwLAuD5ag5rElaGkddRTSEQw27IVn6/exec?callback=showVisitorCount";
+  counterScript.onerror = function () {
+    document.getElementById("visitor-count").textContent = "Unavailable";
+  };
+  document.body.appendChild(counterScript);
+</script>
+
 
 
   <!-- Introduction -->
