@@ -142,18 +142,28 @@
   <div class="visitor-counter">
     <h3>YOU ARE VISITOR #</h3>
 
-    <script
-      src="https://counterapi.com/c.js?ns=skookieonline.github.io"
-      async>
-    </script>
+<div id="visitor-count">Loading...</div>
 
-    <div
-      class="counterapi"
-      key="skookie-zone-home"
-      style="min-height: 44px;">
-    </div>
+<script type="module">
+  import { Counter } from
+    'https://cdn.jsdelivr.net/npm/counterapi/dist/counter.esm.min.js';
 
-    <p>Thanks for visiting!! :3</p>
+  const counter = new Counter({
+    workspace: 'YOUR_WORKSPACE_NAME'
+  });
+
+  try {
+    const result = await counter.up('skookie-zone-home');
+    document.getElementById('visitor-count').textContent =
+      result.value ?? result.data?.up_count ?? 'Count unavailable';
+  } catch (error) {
+    document.getElementById('visitor-count').textContent =
+      'Counter unavailable';
+    console.error('Counter error:', error);
+  }
+</script>
+
+<p>Thanks for visiting!! :3</p>
   </div>
 
   <!-- Introduction -->
