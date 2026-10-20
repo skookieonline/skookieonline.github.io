@@ -1,2 +1,203 @@
-# skookieonline.github.io
-My Website!
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Skookie Zone</title>
+
+  <style>
+    body {
+      background-image: url('fantasy-br.jpg');
+      background-repeat: repeat;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Top banner */
+    .banner {
+      background-color: gray;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin: 0;
+      font-size: 36px;
+    }
+
+    /* ASCII cat borders */
+    .banner::before,
+    .banner::after {
+      content: "=^-3-^=  =^-3-^=  =^-3-^=  =^-3-^=  =^-3-^=  =^-3-^=";
+      display: block;
+      color: white;
+      font-size: 16px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      line-height: 20px;
+    }
+
+    .banner::before {
+      margin-bottom: 8px;
+    }
+
+    .banner::after {
+      margin-top: 8px;
+    }
+
+    /* Separate gray text boxes */
+    p,
+    h2,
+    ul {
+      background-color: gray;
+      width: fit-content;
+      max-width: calc(100% - 50px);
+      box-sizing: border-box;
+      padding: 10px;
+      margin: 15px;
+      border: 2px solid black;
+    }
+
+    /* List spacing */
+    ul {
+      padding-left: 35px;
+      padding-right: 15px;
+    }
+
+    /* Keep images responsive */
+    p img {
+      max-width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    /* Scrolling welcome message */
+    .marquee-box {
+      background-color: gray;
+      color: white;
+      border: 2px solid black;
+      margin: 15px;
+      padding: 8px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-message 18s linear infinite;
+      font-weight: bold;
+    }
+
+    @keyframes scroll-message {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Visitor counter box */
+    .visitor-counter {
+      background-color: gray;
+      color: white;
+      border: 2px solid black;
+      padding: 12px;
+      margin: 15px;
+      width: fit-content;
+      text-align: center;
+      font-family: monospace;
+    }
+
+    .visitor-counter h3 {
+      margin: 0 0 8px 0;
+    }
+
+    /* Keep the counter message inside its box */
+    .visitor-counter p {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 5px 0 0;
+      max-width: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Main banner -->
+  <h1 class="banner">Skookie Zone</h1>
+
+  <!-- Scrolling welcome message -->
+  <div class="marquee-box">
+    <div class="marquee-text">
+      :3c WELCOME TO SKOOKIE ZONE!
+      THANKS FOR VISITING! :3c
+    </div>
+  </div>
+
+  <!-- Visitor counter: moved directly below the scrolling banner -->
+  <div class="visitor-counter">
+    <h3>YOU ARE VISITOR #</h3>
+
+    <script
+      src="https://counterapi.com/c.js?ns=skookiezone"
+      async>
+    </script>
+
+    <div class="counterapi"></div>
+
+    <p>Thanks for visiting!! :3</p>
+  </div>
+
+  <!-- Introduction -->
+  <p>
+    Hello Gang you should
+    <a href="https://skookienookie.straw.page">
+      check out my Strawpage too!
+    </a>
+    <br><br>
+    <img
+      src="Harbor Seal.jpg"
+      width="600"
+      height="200"
+      alt="Harbor seal">
+  </p>
+
+  <!-- Cool things list -->
+  <h2>Things I think are Pretty Cool</h2>
+
+  <ul>
+    <li>Seals</li>
+    <li>
+      <a href="https://x.com/TweeterBento">
+        My Roommate
+      </a>
+    </li>
+    <li>Ascii Emoticons (-3-)</li>
+  </ul>
+
+  <!-- Mood poll -->
+  <p>How Was Your Day?</p>
+
+  <p>
+    <input type="radio" name="mood" value="joyous">
+    Joyous
+    <br>
+
+    <input type="radio" name="mood" value="aight">
+    Aight
+    <br>
+
+    <input type="radio" name="mood" value="frown">
+    Frown
+    <br>
+
+    <input type="radio" name="mood" value="angry" checked>
+    ANGRY
+  </p>
+
+</body>
+</html>
