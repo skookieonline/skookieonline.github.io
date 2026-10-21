@@ -64,24 +64,40 @@
       align-items: flex-start;
     }
 
+    css
+    /* Image gallery layout */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 15px;
+      align-items: flex-start;
+    }
+    
+    /* Same-sized gray frames */
     .gallery figure {
       background-color: gray;
       border: 2px solid black;
       padding: 10px;
       margin: 0;
-      width: 250px;
-      max-width: calc(100% - 24px);
+      width: 270px;
+      max-width: 100%;
       color: white;
       text-align: center;
       box-sizing: border-box;
     }
-
+    
+    /* All artwork uses the same dimensions */
     .gallery img {
-      width: 100%;
-      height: auto;
+      width: 246px;
+      max-width: 100%;
+      height: 246px;
+      object-fit: contain;
       display: block;
+      margin: 0 auto;
     }
-
+    
+    /* Captions */
     .gallery figcaption {
       margin-top: 8px;
       overflow-wrap: anywhere;
@@ -171,6 +187,11 @@
     <figure>
       <img src="img/abstract-oc-art.jpg" alt="Abstract Triangle">
       <figcaption>Drew this in high school too</figcaption>
+    </figure>
+
+    <figure>
+      <img src="vikki1-art.jpg" alt="Vikki">
+      <figcaption>Art of my friend Nikki's OC, Vikki the Snivy!</figcaption>
     </figure>
     
   </div>
