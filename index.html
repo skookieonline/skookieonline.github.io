@@ -176,11 +176,20 @@
     </a>
     <br><br>
     <img
-      src="img/Harbor Seal.jpg"
-      width="600"
-      height="200"
-      alt="Harbor seal">
+     src="img/Harbor Seal.jpg"
+     width="600"
+     height="200"
+     alt="Harbor seal"
+     onclick="document.getElementById('seal-audio').currentTime = 0; document.getElementById('seal-audio').play()"
+     style="cursor: pointer;">
+    
+     <audio id="seal-audio" preload="auto">
+      <source src="seal_noises_fixed.wav" type="audio/wav">
+      Your browser does not support audio.
+    </audio>
   </p>
+  
+  <p>Click the seal for a surprise sound!</p>
 
   <!-- Cool things list -->
   <h2>Things I think are Pretty Cool</h2>
