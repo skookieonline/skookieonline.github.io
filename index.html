@@ -261,7 +261,40 @@
   background: transparent;
 }
 
-/* Introduction layout */
+/* Visitor counter */
+    .counter-about-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      margin: 15px;
+    }
+
+    .counter-about-layout .visitor-counter {
+      flex: 0 0 auto;
+      margin: 0;
+    }
+
+    .counter-about-layout .about-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .counter-about-layout .about-content p,
+    .counter-about-layout .about-content ul,
+    .counter-about-layout .about-content h2 {
+      max-width: 100%;
+    }
+
+    .counter-about-layout .about-me h2,
+    .counter-about-layout .about-content > h2 {
+      margin-top: 0;
+    }
+
+    .counter-about-layout .about-content > h2 {
+      margin-top: 15px;
+    }
+
+    /* Introduction layout */
     .intro-layout {
       display: flex;
       align-items: flex-start;
@@ -284,7 +317,7 @@
     .seal-card img {
       display: block;
       width: 100%;
-      max-width: 450px;
+      max-width: 250px;
       height: auto;
       margin: 0 auto;
       cursor: url("img/seal.cur") 0 0, pointer;
@@ -292,6 +325,15 @@
 
     /* Stack the boxes */
     @media (max-width: 600px) {
+      .counter-about-layout {
+        flex-direction: column;
+      }
+
+      .counter-about-layout .about-content {
+        box-sizing: border-box;
+        width: 100%;
+      }
+
       .intro-layout {
         flex-direction: column;
       }
@@ -323,12 +365,37 @@
     </div>
   </div>
 
+  <!-- Visitor counter and About Me side by side -->
+  <div class="counter-about-layout">
   <!-- Visitor counter -->
   <div class="visitor-counter">
     <h3>YOU ARE VISITOR #</h3>
     <span id="visitor-count" aria-live="polite">...</span>
     <p>Thanks for visiting!! :3</p>
   </div>
+
+  <div class="about-content">
+    <section class="about-me">
+      <h2>About Me ♡</h2>
+      <p>
+        Hello!! Im Skookie :3 I'm majoring in Cybersecurity
+        with a minor in Computer Science. I'm a 22 yr old
+        seal in a big trenchcoat. I have HTML tattoos so I
+        needed to make a website so I wasn't being a poser.
+        Enjoy your stay here and take a look at my art!
+      </p>
+    </section>
+
+    <h2>Things I think are Pretty Cool</h2>
+    <ul>
+      <li>Seals</li>
+      <li><a href="https://x.com/TweeterBento">My Roommate</a></li>
+      <li>Ascii Emoticons (-3-)</li>
+    </ul>
+  </div>
+  </div>
+
+
 
 <!-- Introduction -->
 <div class="intro-layout">
@@ -346,28 +413,12 @@
     </audio>
 
     <p>Click the seal for a surprise sound! :3</p>
-    
   </div>
 
-  <section class="about-me">
-    <h2>About Me ♡</h2>
-    <p>
-      Hello!! Im Skookie :3 I'm majoring in Cybersecurity
-      with a minor in Computer Science. I'm a 22 yr old
-      seal in a big trenchcoat. I have HTML tattoos so I 
-      needed to make a website so I wasn't being a poser. 
-      Enjoy your stay here and take a look at my art!
-    </p>
-    
-  </section>
+
 </div>
 
-  <h2>Things I think are Pretty Cool</h2>
-  <ul>
-    <li>Seals</li>
-    <li><a href="https://x.com/TweeterBento">My Roommate</a></li>
-    <li>Ascii Emoticons (-3-)</li>
-  </ul>
+
 
   <nav class="page-links" aria-label="Other pages">
     <span class="stars">⋆｡°✩ ⋆｡°✩ ⋆｡°✩</span>
