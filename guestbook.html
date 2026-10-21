@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skookie Zone Guestbook</title>
+
+  <style>
+    :root {
+      --peach: #FFD0A3;
+      --light-peach: #FFE1C2;
+      --brown: #80513F;
+      --gold: #D9A16C;
+      --hover-peach: #FFF0D9;
+      --shadow-brown: #B97B55;
+    }
+
+    /* Page background */
+    body {
+      margin: 0;
+      padding: 20px;
+      color: var(--brown);
+      font-family: Arial, sans-serif;
+      background-color: var(--peach);
+      background-image: url("img/pink-fall.jpg");
+      background-repeat: repeat;
+      cursor: auto;
+    }
+
+    /* Main title */
+    h1 {
+      box-sizing: border-box;
+      max-width: 700px;
+      margin: 15px auto;
+      padding: 18px;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      background: var(--light-peach);
+      color: var(--brown);
+      text-align: center;
+      box-shadow: 3px 3px 0 var(--shadow-brown);
+    }
+
+    /* Welcome message */
+    .welcome-message {
+      box-sizing: border-box;
+      max-width: 700px;
+      margin: 15px auto;
+      padding: 15px;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      background: var(--light-peach);
+      color: var(--brown);
+      line-height: 1.6;
+    }
+
+    /* Guestbook container */
+    .guestbook-box {
+      box-sizing: border-box;
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      background: var(--light-peach);
+      box-shadow: 3px 3px 0 var(--shadow-brown);
+    }
+
+    .guestbook-box iframe {
+      display: block;
+      width: 100%;
+      min-height: 500px;
+      border: none;
+      border-radius: 5px;
+      background: var(--light-peach);
+    }
+
+    /* Return button */
+    .back-link {
+      display: block;
+      box-sizing: border-box;
+      width: fit-content;
+      max-width: 100%;
+      margin: 25px auto;
+      padding: 12px 18px;
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      background: var(--light-peach);
+      color: var(--brown);
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 3px 3px 0 var(--shadow-brown);
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .back-link:hover {
+      background: var(--hover-peach);
+      transform: translateY(-2px);
+    }
+
+    .back-link:active {
+      transform: translateY(1px);
+      box-shadow: 1px 1px 0 var(--shadow-brown);
+    }
+
+    /* Decorative leaves */
+    .decoration {
+      max-width: 700px;
+      margin: 15px auto;
+      color: var(--brown);
+      text-align: center;
+      letter-spacing: 5px;
+    }
+
+    /* Small-screen adjustments */
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      h1 {
+        padding: 14px;
+        font-size: 1.6rem;
+      }
+
+      .guestbook-box {
+        padding: 8px;
+      }
+
+      .guestbook-box iframe {
+        min-height: 450px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Skookie Zone Guestbook</h1>
+
+  <div class="decoration" aria-hidden="true">
+    ✿ ❧ 🏵 ❧ ✿
+  </div>
+
+  <p class="welcome-message">
+    Welcome to my Guesbook page!
+    <br><br>
+    Leave a message before you galumph away.
+    <br><br>
+    — Skookie <3
+  </p>
+
+  <div class="guestbook-box">
+<!-- UltraGuest guestbook -->
+<iframe src="https://www.ultraguest.com/embed/hczfsbnr" title="Guestbook" width="100%" height="420" style="border:1px solid #ccc;border-radius:6px;max-width:100%" loading="lazy" referrerpolicy="no-referrer">
+</iframe>
+</div>
+
+  <div class="decoration" aria-hidden="true">
+    ⋆｡°✩ 🏵 ✩°｡⋆
+  </div>
+
+  <a class="back-link" href="index.html">
+    ← Back to Skookie Zone 
+  </a>
+
+</body>
+</html>
