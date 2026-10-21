@@ -261,20 +261,22 @@
   background: transparent;
 }
 
+/* Seal image sizing */
+.seal-card img {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin: 0 auto;
+  cursor: url("img/seal.cur") 0 0, pointer;
+}
+
 /* Stack the boxes */
 @media (max-width: 600px) {
   .intro-layout {
     flex-direction: column;
   }
 
-  .seal-card img {
-  display: block;
-  width: 100%;
-  max-width: 350px;
-  height: auto;
-  margin: 0 auto;
-  cursor: url("img/seal.cur") 0 0, pointer;
-}
   .about-me {
     width: 100%;
   }
