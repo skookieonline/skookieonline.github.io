@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Skookie Zone - My Art!</title>
+
+  <style>
+    body {
+      background-image: url('hearts.gif');
+      background-repeat: repeat;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Top banner */
+    .banner {
+      background-color: gray;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin: 0;
+      font-size: 36px;
+    }
+
+    /* ASCII cat borders */
+    .banner::before,
+    .banner::after {
+      content: "=^-3-^=  =^-3-^=  =^-3-^=  =^-3-^=  =^-3-^=";
+      display: block;
+      color: white;
+      font-size: 16px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      line-height: 20px;
+    }
+
+    .banner::before {
+      margin-bottom: 8px;
+    }
+
+    .banner::after {
+      margin-top: 8px;
+    }
+
+    /* Gray content boxes */
+    p, h2 {
+      background-color: gray;
+      color: white;
+      width: fit-content;
+      max-width: calc(100% - 50px);
+      box-sizing: border-box;
+      padding: 10px;
+      margin: 15px;
+      border: 2px solid black;
+    }
+
+    /* Image gallery layout */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 15px;
+      align-items: flex-start;
+    }
+
+    .gallery figure {
+      background-color: gray;
+      border: 2px solid black;
+      padding: 10px;
+      margin: 0;
+      width: 250px;
+      max-width: calc(100% - 24px);
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .gallery figcaption {
+      margin-top: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    /* Navigation */
+    .navigation {
+      background-color: gray;
+      border: 2px solid black;
+      padding: 10px;
+      margin: 15px;
+      width: fit-content;
+    }
+
+    .navigation a {
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1 class="banner">Skookie Zone Art Museum</h1>
+
+  <p>Welcome to my image collection!! :3c</p>
+
+  <!-- Back to homepage -->
+  <div class="navigation">
+    <a href="index.html">← Back to Skookie Zone</a>
+  </div>
+
+  <h2>My Art ⋆｡°✩</h2>
+
+  <!-- Images -->
+  <div class="gallery">
+
+    <figure>
+      <img src="90s-bunny-art.jpg" alt="Bunnoi">
+      <figcaption>Big Bunnoi</figcaption>
+    </figure>
+
+    <figure>
+      <img src="superman-apple-art.jpg" alt="Superman apple">
+      <figcaption>Piece I drew for the Superman (2025) film</figcaption>
+    </figure>
+
+    <figure>
+      <img src="superman-meme-art.jpg" alt="Superman meme">
+      <figcaption>Silly piece for the film</figcaption>
+    </figure>
+
+    <figure>
+      <img src="dan-luthor-art.jpg" alt="Dan Hentschel Lex Luthor">
+      <figcaption>Lex Luthor drawn over a Dan Hentschel video lol</figcaption>
+    </figure>
+
+    <figure>
+      <img src="eraserhead-alien-art.jpg" alt="Eraserhead Alien">
+      <figcaption>An alien holding the eraserhead baby. For funsies</figcaption>
+    </figure>
+
+    <figure>
+      <img src="bf-pokemon-art.jpg" alt="Pokemon with bf">
+      <figcaption>Me and the Boyf as Pokemon!!!</figcaption>
+    </figure>
+
+    <figure>
+      <img src="bf-furry-art.jpg" alt="Furry with bf">
+      <figcaption>Me and the Boyf as animals :3</figcaption>
+    </figure>
+
+    <figure>
+      <img src="seal-love-art.jpg" alt="Seals in love">
+      <figcaption>Me and the Boyf as seals ar ar ar</figcaption>
+    </figure>
+
+    <figure>
+      <img src="bf-chibi-art.jpg" alt="Chibi bf">
+      <figcaption>Me and the Boyf as anime</figcaption>
+    </figure>
+
+    <figure>
+      <img src="roblox-art.jpg" alt="Roblox">
+      <figcaption>Drew this in high school</figcaption>
+    </figure>
+
+    <figure>
+      <img src="abstract-oc-art.jpg" alt="Abstract Triangle">
+      <figcaption>Drew this in high school too</figcaption>
+    </figure>
+    
+  </div>
+
+  <p>Thanks for looking at my art!! (-3-)</p>
+
+</body>
+</html>
