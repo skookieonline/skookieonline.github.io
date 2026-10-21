@@ -23,7 +23,7 @@
       background-repeat: repeat;
       cursor: url("img/seal.cur") 0 0, auto;
     }
-    
+
     a,
     a:hover,
     a:active,
@@ -36,7 +36,7 @@
     img[onclick] {
       cursor: url("img/seal.cur") 0 0, pointer !important;
     }
-    
+
     .banner {
       margin: 0;
       padding: 10px 0;
@@ -83,7 +83,7 @@
       from { transform: translateX(0); }
       to { transform: translateX(-100%); }
     }
-    
+
     p,
     h2,
     ul {
@@ -129,7 +129,7 @@
       border: 0;
       background: transparent;
     }
-    
+
     .page-links {
       display: flex;
       flex-wrap: wrap;
@@ -229,7 +229,7 @@
       100% { opacity: 0; scale: 0.8; }
     }
 
-    /* reduced-motion settings. */
+    /* reduced-motion settings */
     @media (prefers-reduced-motion: reduce) {
       .marquee-text,
       .floating-fun,
@@ -251,50 +251,18 @@
 
       .banner { padding-top: 44px; }
     }
+
     .about-me h2 {
-  width: auto;
-  max-width: none;
-  margin: 0 0 10px;
-  padding: 0 0 8px;
-  border: none;
-  border-bottom: 2px dashed #E8C96A;
-  background: transparent;
-}
-
-/* Visitor counter */
-    .counter-about-layout {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      margin: 15px;
+      width: auto;
+      max-width: none;
+      margin: 0 0 10px;
+      padding: 0 0 8px;
+      border: none;
+      border-bottom: 2px dashed #E8C96A;
+      background: transparent;
     }
 
-    .counter-about-layout .visitor-counter {
-      flex: 0 0 auto;
-      margin: 0;
-    }
-
-    .counter-about-layout .about-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .counter-about-layout .about-content p,
-    .counter-about-layout .about-content ul,
-    .counter-about-layout .about-content h2 {
-      max-width: 100%;
-    }
-
-    .counter-about-layout .about-me h2,
-    .counter-about-layout .about-content > h2 {
-      margin-top: 0;
-    }
-
-    .counter-about-layout .about-content > h2 {
-      margin-top: 15px;
-    }
-
-    /* Introduction layout */
+    /* Layout */
     .intro-layout {
       display: flex;
       align-items: flex-start;
@@ -302,18 +270,23 @@
       margin: 20px 15px;
     }
 
-    .seal-card {
+    .left-column {
+      display: flex;
       flex: 0 0 250px;
+      flex-direction: column;
+      gap: 15px;
       width: 250px;
+    }
+
+    .left-column .visitor-counter {
+      width: 100%;
+      margin: 0;
+    }
+
+    .seal-card {
       text-align: center;
     }
 
-    .about-me {
-      flex: 1;
-      min-width: 0;
-    }
-
-    /* Seal image sizing */
     .seal-card img {
       display: block;
       width: 100%;
@@ -323,32 +296,42 @@
       cursor: url("img/seal.cur") 0 0, pointer;
     }
 
-    /* Stack the boxes */
+    .seal-card p {
+      max-width: 100%;
+      margin: 15px 0 0;
+    }
+
+    .about-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .about-content p,
+    .about-content ul,
+    .about-content h2 {
+      max-width: 100%;
+    }
+
+    .about-content > h2 {
+      margin-top: 15px;
+    }
+
+    /* Stack everything */
     @media (max-width: 600px) {
-      .counter-about-layout {
-        flex-direction: column;
-      }
-
-      .counter-about-layout .about-content {
-        box-sizing: border-box;
-        width: 100%;
-      }
-
       .intro-layout {
         flex-direction: column;
       }
 
-      .seal-card {
+      .left-column {
         flex-basis: auto;
         width: 100%;
       }
 
-      .about-me {
+      .about-content {
         box-sizing: border-box;
         width: 100%;
       }
     }
-
   </style>
 </head>
 
@@ -365,60 +348,54 @@
     </div>
   </div>
 
-  <!-- Visitor counter and About Me side by side -->
-  <div class="counter-about-layout">
-  <!-- Visitor counter -->
-  <div class="visitor-counter">
-    <h3>YOU ARE VISITOR #</h3>
-    <span id="visitor-count" aria-live="polite">...</span>
-    <p>Thanks for visiting!! :3</p>
+  <!-- About me and Seal -->
+  <div class="intro-layout">
+
+    <div class="left-column">
+      <!-- Visitor counter -->
+      <div class="visitor-counter">
+        <h3>YOU ARE VISITOR #</h3>
+        <span id="visitor-count" aria-live="polite">...</span>
+        <p>Thanks for visiting!! :3</p>
+      </div>
+
+      <div class="seal-card">
+        <img
+          src="img/Harbor-Seal.png"
+          alt="Harbor seal"
+          id="seal-image"
+        >
+
+        <audio id="seal-audio" preload="none">
+          <source src="Seal_noises_fixed.wav" type="audio/wav">
+          Your browser does not support audio.
+        </audio>
+
+        <p>Click the seal for a surprise sound! :3</p>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <section class="about-me">
+        <h2>About Me ♡</h2>
+        <p>
+          Hello!! Im Skookie :3 I'm majoring in Cybersecurity
+          with a minor in Computer Science. I'm a 22 yr old
+          seal in a big trenchcoat. I have HTML tattoos so I
+          needed to make a website so I wasn't being a poser.
+          Enjoy your stay here and take a look at my art!
+        </p>
+      </section>
+
+      <h2>Things I think are Pretty Cool</h2>
+      <ul>
+        <li>Seals</li>
+        <li><a href="https://x.com/TweeterBento">My Roommate</a></li>
+        <li>Ascii Emoticons (-3-)</li>
+      </ul>
+    </div>
+
   </div>
-
-  <div class="about-content">
-    <section class="about-me">
-      <h2>About Me ♡</h2>
-      <p>
-        Hello!! Im Skookie :3 I'm majoring in Cybersecurity
-        with a minor in Computer Science. I'm a 22 yr old
-        seal in a big trenchcoat. I have HTML tattoos so I
-        needed to make a website so I wasn't being a poser.
-        Enjoy your stay here and take a look at my art!
-      </p>
-    </section>
-
-    <h2>Things I think are Pretty Cool</h2>
-    <ul>
-      <li>Seals</li>
-      <li><a href="https://x.com/TweeterBento">My Roommate</a></li>
-      <li>Ascii Emoticons (-3-)</li>
-    </ul>
-  </div>
-  </div>
-
-
-
-<!-- Introduction -->
-<div class="intro-layout">
-
-  <div class="seal-card">
-    <img
-      src="img/Harbor-Seal.png"
-      alt="Harbor seal"
-      id="seal-image"
-    >
-
-    <audio id="seal-audio" preload="none">
-      <source src="Seal_noises_fixed.wav" type="audio/wav">
-      Your browser does not support audio.
-    </audio>
-
-    <p>Click the seal for a surprise sound! :3</p>
-  </div>
-
-
-</div>
-
-
 
   <nav class="page-links" aria-label="Other pages">
     <span class="stars">⋆｡°✩ ⋆｡°✩ ⋆｡°✩</span>
