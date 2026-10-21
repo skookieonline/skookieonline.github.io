@@ -7,6 +7,9 @@
   <style>
   /* Main page background */
   body {
+    <button id="animation-toggle" type="button" aria-pressed="false">
+    Turn Off Animation
+    </button>
     background-image: url('img/yellow-paws.jpg');
     background-repeat: repeat;
     margin: 0;
@@ -225,7 +228,31 @@
     animation-duration: 0.01ms !important;
   }
 }
+    
+/* Animation toggle button */
+#animation-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 10001;
+  background-color: #FFF4C2;
+  color: #76552C;
+  border: 2px solid #E8C96A;
+  padding: 8px 12px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #C99D42;
+}
 
+#animation-toggle:hover {
+  background-color: #FFE69A;
+}
+
+#animation-toggle:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #C99D42;
+}
 </style>
 </head>
 
@@ -319,8 +346,8 @@
   // fun symbols
   const funSymbols = [
     "✦", "✧", "★", "☆", "⋆",
-    "♡", "୨୧", "!!!", "?!?!", 
-    ">:3", "(-3-)", "•⩊•", "(•ﻌ•)っ)3", "⋅˚₊‧ ଳ ‧₊˚ ⋅"
+    "♡", "୨୧", "!!", "?!", 
+    ">:3", "(-3-)", "•⩊•", "(•ﻌ•)っ)3", "ଳ"
   ];
 
   const funMessages = [
@@ -335,8 +362,28 @@
   ];
 
   let lastMessage = 0;
+  let animationsEnabled = true;
+  
+  const animationButton = document.getElementById("animation-toggle");
+  
+  animationButton.addEventListener("click", () => {
+  animationsEnabled = !animationsEnabled;
+
+  if (animationsEnabled) {
+    animationButton.textContent = "Turn Off Animation (˶˃ᆺ˂˶)";
+    animationButton.setAttribute("aria-pressed", "false");
+  } else {
+    animationButton.textContent = "Turn On Animation ദ്ദി◝ ⩊ ◜.ᐟ";
+    animationButton.setAttribute("aria-pressed", "true");
+
+    // Remove effects on screen
+    document.querySelectorAll(".floating-fun, .fun-message")
+      .forEach(effect => effect.remove());
+  }
+});
 
   function makeSparkle(x, y) {
+    if (!animationsEnabled) return;
     const sparkle = document.createElement("span");
     sparkle.className = "floating-fun";
     sparkle.textContent =
@@ -358,6 +405,7 @@
   }
 
   function makeMessage() {
+    if (!animationsEnabled) return;
     const message = document.createElement("div");
     message.className = "fun-message";
     message.textContent =
@@ -388,7 +436,7 @@
           Math.random() * window.innerHeight
         );
       }
-    }, 700);
+    }, 1200);
 
     // Random announcements
     setInterval(() => {
@@ -405,7 +453,7 @@
 
   // Click for funsies
   document.addEventListener("click", (event) => {
-    if (reducedMotion) return;
+    if (reducedMotion || !animationsEnabled) return;
 
     for (let i = 0; i < 5; i++) {
       makeSparkle(
