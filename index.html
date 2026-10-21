@@ -261,26 +261,52 @@
   background: transparent;
 }
 
-/* Seal image sizing */
-.seal-card img {
-  display: block;
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-  margin: 0 auto;
-  cursor: url("img/seal.cur") 0 0, pointer;
-}
+/* Introduction layout */
+    .intro-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      margin: 20px 15px;
+    }
 
-/* Stack the boxes */
-@media (max-width: 600px) {
-  .intro-layout {
-    flex-direction: column;
-  }
+    .seal-card {
+      flex: 0 0 250px;
+      width: 250px;
+      text-align: center;
+    }
 
-  .about-me {
-    width: 100%;
-  }
-}
+    .about-me {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Seal image sizing */
+    .seal-card img {
+      display: block;
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      margin: 0 auto;
+      cursor: url("img/seal.cur") 0 0, pointer;
+    }
+
+    /* Stack the boxes */
+    @media (max-width: 600px) {
+      .intro-layout {
+        flex-direction: column;
+      }
+
+      .seal-card {
+        flex-basis: auto;
+        width: 100%;
+      }
+
+      .about-me {
+        box-sizing: border-box;
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 
@@ -320,6 +346,7 @@
     </audio>
 
     <p>Click the seal for a surprise sound! :3</p>
+    
   </div>
 
   <section class="about-me">
