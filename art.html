@@ -11,9 +11,22 @@
       margin: 0;
       font-family: Arial, sans-serif;
       color: #864D60;
-      cursor: url('img/seal.cur') 16 16, auto;
-    }
+     cursor: url('img/seal.cur') 0 0, auto;
+  }
 
+      /* Keep the seal cursor on links and interactive elements */
+      a,
+      a:hover,
+      a:active,
+      a:visited,
+      button,
+      button:hover,
+      input,
+      textarea,
+      select,
+      img[onclick] {
+        cursor: url('img/seal.cur') 0 0, pointer !important;
+      }
     /* Top banner */
     .banner {
       background-color: #FFE8F0;
