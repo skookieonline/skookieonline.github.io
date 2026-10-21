@@ -251,6 +251,27 @@
 
       .banner { padding-top: 44px; }
     }
+    .about-me h2 {
+  width: auto;
+  max-width: none;
+  margin: 0 0 10px;
+  padding: 0 0 8px;
+  border: none;
+  border-bottom: 2px dashed #E8C96A;
+  background: transparent;
+}
+
+/* Stack the boxes */
+@media (max-width: 600px) {
+  .intro-layout {
+    flex-direction: column;
+  }
+
+  .seal-card,
+  .about-me {
+    width: 100%;
+  }
+}
   </style>
 </head>
 
@@ -274,25 +295,41 @@
     <p>Thanks for visiting!! :3</p>
   </div>
 
-  <!-- Introduction -->
-  <p>
-    Hello Gang you should
-    <a href="https://skookienookie.straw.page">check out my Strawpage too!</a>
-    <br><br>
+<!-- Introduction -->
+<div class="intro-layout">
+
+  <div class="seal-card">
     <img
       src="img/Harbor Seal.jpg"
-      width="600"
-      height="200"
       alt="Harbor seal"
       id="seal-image"
     >
+
     <audio id="seal-audio" preload="none">
       <source src="Seal_noises_fixed.wav" type="audio/wav">
       Your browser does not support audio.
     </audio>
-  </p>
 
-  <p>Click the seal for a surprise sound!</p>
+    <p>Click the seal for a surprise sound! :3</p>
+  </div>
+
+  <section class="about-me">
+    <h2>About Me ♡</h2>
+
+    <p>
+      Hello!! Im Skookie :3 I'm majoring in Cybersecurity
+      with a minor in Computer Science. I'm a 22 yr old
+      seal in a big trenchcoat. I have HTML tattoos so I 
+      needed to make a website so I wasn't being a poser. 
+      Enjoy your stay here and take a look at my art!
+    </p>
+
+    <p>
+      Thanks for visiting Skookie Zone!! :3
+    </p>
+  </section>
+
+</div>
 
   <h2>Things I think are Pretty Cool</h2>
   <ul>
