@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skookie Zone</title>
-  <link rel="icon" type="image/x-icon" href="img/seal-question-mark.ico">
 
   <style>
-    /* theme */
+    /* Theme */
     :root {
       --cream: #FFF4C2;
       --brown: #76552C;
@@ -38,6 +37,7 @@
       cursor: url("img/seal.cur") 0 0, pointer !important;
     }
 
+    /* Main banner */
     .banner {
       margin: 0;
       padding: 10px 0;
@@ -63,6 +63,7 @@
     .banner::before { margin-bottom: 8px; }
     .banner::after { margin-top: 8px; }
 
+    /* Scrolling welcome message */
     .marquee-box {
       overflow: hidden;
       margin: 15px;
@@ -85,6 +86,7 @@
       to { transform: translateX(-100%); }
     }
 
+    /* Main text boxes */
     p,
     h2,
     ul {
@@ -109,7 +111,7 @@
       vertical-align: middle;
     }
 
-    /* visitor counter */
+    /* Visitor counter */
     .visitor-counter {
       box-sizing: border-box;
       width: fit-content;
@@ -123,6 +125,7 @@
     }
 
     .visitor-counter h3 { margin: 0 0 8px; }
+
     .visitor-counter p {
       max-width: none;
       margin: 5px 0 0;
@@ -131,6 +134,7 @@
       background: transparent;
     }
 
+    /* Bottom navigation */
     .page-links {
       display: flex;
       flex-wrap: wrap;
@@ -151,7 +155,7 @@
 
     .page-links a { text-decoration: underline; }
 
-    /* animation toggle */
+    /* Animation toggle button */
     #animation-toggle {
       position: fixed;
       z-index: 10001;
@@ -174,7 +178,7 @@
       box-shadow: 1px 1px 0 var(--shadow-gold);
     }
 
-    /* sparkles and silly */
+    /* Floating sparkles */
     .floating-fun {
       position: fixed;
       z-index: 9999;
@@ -203,6 +207,7 @@
       }
     }
 
+    /* Random silly messages */
     .fun-message {
       position: fixed;
       z-index: 10000;
@@ -230,7 +235,7 @@
       100% { opacity: 0; scale: 0.8; }
     }
 
-    /* reduced-motion settings */
+    /* Respect reduced-motion settings */
     @media (prefers-reduced-motion: reduce) {
       .marquee-text,
       .floating-fun,
@@ -253,17 +258,18 @@
       .banner { padding-top: 44px; }
     }
 
+    /* About Me heading */
     .about-me h2 {
       width: auto;
       max-width: none;
       margin: 0 0 10px;
       padding: 0 0 8px;
       border: none;
-      border-bottom: 2px dashed #E8C96A;
+      border-bottom: 2px dashed var(--gold);
       background: transparent;
     }
 
-    /* Layout */
+    /* Main intro layout */
     .intro-layout {
       display: flex;
       align-items: flex-start;
@@ -317,8 +323,151 @@
       margin-top: 15px;
     }
 
-    /* Stack everything */
-    @media (max-width: 600px) {
+    /* Things list and terminal side-by-side */
+    .things-terminal-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .things-column {
+      flex: 0 0 38%;
+      min-width: 0;
+    }
+
+    .things-column h2 {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 0 15px;
+    }
+
+    .things-column ul {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    /* Cybersecurity terminal */
+    .cyber-terminal {
+      box-sizing: border-box;
+      flex: 1;
+      min-width: 0;
+      width: auto;
+      max-width: 700px;
+      margin: 0;
+      padding: 16px;
+      border: 3px solid var(--gold);
+      border-radius: 12px;
+      background: var(--cream);
+      color: var(--brown);
+      box-shadow: 5px 5px 0 var(--shadow-gold);
+    }
+
+    .terminal-titlebar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: -16px -16px 14px;
+      padding: 12px;
+      border-bottom: 2px solid var(--gold);
+      border-radius: 9px 9px 0 0;
+      background: #FFE1C2;
+      font-weight: bold;
+    }
+
+    .terminal-lights {
+      white-space: nowrap;
+      letter-spacing: 3px;
+    }
+
+    .terminal-intro {
+      width: auto;
+      max-width: none;
+      margin: 10px 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      line-height: 1.5;
+    }
+
+    .terminal-screen {
+      box-sizing: border-box;
+      min-height: 180px;
+      max-height: 280px;
+      overflow-y: auto;
+      padding: 12px;
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      background: #FFF9E8;
+      color: #684C32;
+      font-family: "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    .terminal-line {
+      margin: 0 0 8px;
+    }
+
+    .terminal-prompt {
+      color: #98652D;
+      font-weight: bold;
+    }
+
+    .terminal-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .terminal-input {
+      box-sizing: border-box;
+      flex: 1;
+      min-width: 0;
+      padding: 10px;
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      background: #FFFFFF;
+      color: var(--brown);
+      font: 16px "Courier New", monospace;
+    }
+
+    .terminal-input:focus {
+      outline: 3px solid #D9A16C;
+      outline-offset: 2px;
+    }
+
+    .terminal-submit {
+      padding: 10px 14px;
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      background: #FFE1C2;
+      color: var(--brown);
+      font-weight: bold;
+    }
+
+    .terminal-submit:hover {
+      background: var(--hover-cream);
+    }
+
+    .terminal-hint {
+      width: auto;
+      max-width: none;
+      margin: 10px 0 0;
+      padding: 0;
+      border: none;
+      background: transparent;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* Stack the layout on smaller screens */
+    @media (max-width: 700px) {
       .intro-layout {
         flex-direction: column;
       }
@@ -332,6 +481,36 @@
         box-sizing: border-box;
         width: 100%;
       }
+
+      .things-terminal-layout {
+        flex-direction: column;
+      }
+
+      .things-column,
+      .things-terminal-layout .cyber-terminal {
+        box-sizing: border-box;
+        flex: auto;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .terminal-form {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cyber-terminal {
+        padding: 12px;
+      }
+
+      .terminal-titlebar {
+        margin: -12px -12px 12px;
+      }
+
+      .terminal-submit {
+        flex: 0 0 auto;
+      }
     }
   </style>
 </head>
@@ -341,15 +520,17 @@
     Turn Off Animation (˶˃ᆺ˂˶)
   </button>
 
+  <!-- Main banner -->
   <h1 class="banner">Skookie Zone</h1>
 
+  <!-- Scrolling welcome message -->
   <div class="marquee-box" aria-label="Welcome message">
     <div class="marquee-text">
       :3c WELCOME TO SKOOKIE ZONE! STAY A WHILE! :3c
     </div>
   </div>
 
-  <!-- About me and Seal -->
+  <!-- About Me and seal -->
   <div class="intro-layout">
 
     <div class="left-column">
@@ -360,6 +541,7 @@
         <p>Thanks for visiting!! :3</p>
       </div>
 
+      <!-- Seal image and sound -->
       <div class="seal-card">
         <img
           src="img/Harbor-Seal.png"
@@ -376,9 +558,11 @@
       </div>
     </div>
 
+    <!-- About Me -->
     <div class="about-content">
       <section class="about-me">
         <h2>About Me ♡</h2>
+
         <p>
           Hello!! Im Skookie :3 I'm majoring in Cybersecurity
           with a minor in Computer Science. I'm a 22 yr old
@@ -386,18 +570,79 @@
           needed to make a website so I wasn't being a poser.
           Enjoy your stay here and take a look at my art!
         </p>
+
+        <p>
+          A lot of this isn't finished, so if
+          something isn't working, I'm working
+          on fixing it!
+        </p>
       </section>
 
-      <h2>Things I think are Pretty Cool</h2>
-      <ul>
-        <li>Seals</li>
-        <li><a href="https://x.com/TweeterBento">My Roommate</a></li>
-        <li>Ascii Emoticons (-3-)</li>
-      </ul>
-    </div>
+      <!-- Things list on the left, terminal on the right -->
+      <div class="things-terminal-layout">
 
+        <section class="things-column">
+          <h2>Things I think are Pretty Cool</h2>
+
+          <ul>
+            <li>Seals</li>
+            <li>
+              <a href="https://x.com/TweeterBento">My Roommate</a>
+            </li>
+            <li>Ascii Emoticons (-3-)</li>
+          </ul>
+        </section>
+
+        <!-- Cozy cybersecurity terminal -->
+        <section class="cyber-terminal" aria-label="SkookieOS terminal">
+
+          <div class="terminal-titlebar">
+            <span>skookie-terminal.exe</span>
+            <span class="terminal-lights" aria-hidden="true">● ● ●</span>
+          </div>
+
+          <p class="terminal-intro">
+            Welcome
+            <br>
+            You have connected to the Skookie Zone Network.
+          </p>
+
+          <div
+            class="terminal-screen"
+            id="terminal-output"
+            role="log"
+            aria-live="polite"
+            aria-relevant="additions"
+          ><div class="terminal-line">SKOOKIE OS [Version 1.0]</div><div class="terminal-line">Connection established</div><div class="terminal-line">Type "help" to see available commands.</div></div>
+
+          <form class="terminal-form" id="terminal-form">
+            <input
+              class="terminal-input"
+              id="terminal-input"
+              type="text"
+              placeholder="Type a command..."
+              aria-label="Terminal command"
+              autocomplete="off"
+              maxlength="80"
+              required
+            >
+
+            <button class="terminal-submit" type="submit">
+              Run
+            </button>
+          </form>
+
+          <p class="terminal-hint">
+            Try: <strong>help</strong>, <strong>whoami</strong>,
+            <strong>pet seal</strong>, or <strong>sudo fih</strong>
+          </p>
+
+        </section>
+      </div>
+    </div>
   </div>
 
+  <!-- Navigation links -->
   <nav class="page-links" aria-label="Other pages">
     <span class="stars">⋆｡°✩ ⋆｡°✩ ⋆｡°✩</span>
     <a href="evil.html">EVIL zone</a>
@@ -407,7 +652,7 @@
   </nav>
 
   <script>
-    /* visitor count */
+    /* Visitor counter */
     function showVisitorCount(data) {
       const countElement = document.getElementById("visitor-count");
 
@@ -421,25 +666,30 @@
     const counterScript = document.createElement("script");
     counterScript.src =
       "https://script.google.com/macros/s/AKfycbznsj4URfEEcPCop59EMZ-HE5YWoNCXcQUBsvAwLAuD5ag5rElaGkddRTSEQw27IVn6/exec?callback=showVisitorCount";
+
     counterScript.onerror = () => {
       document.getElementById("visitor-count").textContent = "Unavailable";
     };
+
     document.body.appendChild(counterScript);
 
-    /* seal sound */
+    /* Seal sound */
     const sealImage = document.getElementById("seal-image");
     const sealAudio = document.getElementById("seal-audio");
 
     sealImage.style.cursor = "pointer";
+
     sealImage.addEventListener("click", () => {
       sealAudio.currentTime = 0;
+
       sealAudio.play().catch(() => {
-        // Browsers may block playback
-        console.warn("Seal audio could not be played. Check the audio file path.");
+        console.warn(
+          "Seal audio could not be played. Check the audio file path."
+        );
       });
     });
 
-    /* effects + on/off toggle */
+    /* Sparkles, silly messages, and animation toggle */
     (() => {
       const symbols = [
         "✦", "✧", "★", "☆", "⋆", "♡", "୨୧", "!!", "?!",
@@ -458,6 +708,7 @@
       ];
 
       const button = document.getElementById("animation-toggle");
+
       const reducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
       ).matches;
@@ -477,14 +728,27 @@
 
         const sparkle = document.createElement("span");
         sparkle.className = "floating-fun";
-        sparkle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        sparkle.textContent =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
         sparkle.style.left = `${x}px`;
         sparkle.style.top = `${y}px`;
-        sparkle.style.setProperty("--drift-x", `${Math.random() * 140 - 70}px`);
-        sparkle.style.setProperty("--duration", `${1.8 + Math.random() * 1.8}s`);
+        sparkle.style.setProperty(
+          "--drift-x",
+          `${Math.random() * 140 - 70}px`
+        );
+        sparkle.style.setProperty(
+          "--duration",
+          `${1.8 + Math.random() * 1.8}s`
+        );
 
         document.body.appendChild(sparkle);
-        sparkle.addEventListener("animationend", () => sparkle.remove(), { once: true });
+
+        sparkle.addEventListener(
+          "animationend",
+          () => sparkle.remove(),
+          { once: true }
+        );
       }
 
       function makeMessage() {
@@ -492,12 +756,22 @@
 
         const message = document.createElement("div");
         message.className = "fun-message";
-        message.textContent = messages[Math.floor(Math.random() * messages.length)];
-        message.style.setProperty("--tilt", `${Math.random() * 12 - 6}deg`);
+        message.textContent =
+          messages[Math.floor(Math.random() * messages.length)];
+
+        message.style.setProperty(
+          "--tilt",
+          `${Math.random() * 12 - 6}deg`
+        );
         message.style.top = `${18 + Math.random() * 35}%`;
 
         document.body.appendChild(message);
-        message.addEventListener("animationend", () => message.remove(), { once: true });
+
+        message.addEventListener(
+          "animationend",
+          () => message.remove(),
+          { once: true }
+        );
       }
 
       function startEffects() {
@@ -518,15 +792,20 @@
           if (document.hidden || Date.now() - lastMessage < 7000) return;
 
           lastMessage = Date.now();
-          if (Math.random() < 0.65) makeMessage();
+
+          if (Math.random() < 0.65) {
+            makeMessage();
+          }
         }, 9000);
       }
 
       function stopEffects() {
         window.clearInterval(sparkleTimer);
         window.clearInterval(messageTimer);
+
         sparkleTimer = null;
         messageTimer = null;
+
         clearEffects();
       }
 
@@ -548,11 +827,19 @@
         } else {
           stopEffects();
         }
+
         updateButton();
       });
 
       document.addEventListener("click", event => {
-        if (!animationsEnabled || reducedMotion || event.target === button) return;
+        if (
+          !animationsEnabled ||
+          reducedMotion ||
+          event.target === button
+        ) {
+          return;
+        }
+
         for (let i = 0; i < 5; i++) {
           makeSparkle(
             event.clientX + Math.random() * 50 - 25,
@@ -560,8 +847,140 @@
           );
         }
       });
+
       updateButton();
-      if (animationsEnabled) startEffects();
+
+      if (animationsEnabled) {
+        startEffects();
+      }
+    })();
+
+    /* Terminal commands */
+    (() => {
+      const form = document.getElementById("terminal-form");
+      const input = document.getElementById("terminal-input");
+      const output = document.getElementById("terminal-output");
+
+      if (!form || !input || !output) return;
+      
+      let currentPermissions = "user";
+      const responses = {
+        help: [
+          "AVAILABLE COMMANDS:",
+          "help       - Display available commands",
+          "whoami     - Identify yourself",
+          "pet seal   - Pet a beautiful seal",
+          "scan       - Run a security scan",
+          "sudo fih   - Request elevated fih",
+          "clear      - Clear the terminal",
+          "exit       - End your session"
+        ].join("\n"),
+
+        whoami: function() {
+          return "You are a visitor of Skookie Zone\n" +
+          "Role: Honorary bro\n" +
+          "Permissions: " + currentPermissions;
+        },
+
+        
+         "pet seal": `⠀⠀
+   ⠀⠀⠀⢀⣠⠤⠤⠤⠤⠤⢤⣀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⢀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠈⢣⡀
+⠀⠀⠀⠀⣸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢷
+⠀⠀⠀⠀⡏⣾⠧⠤⠀⠸⣿⡗⢀⡀⠀⠀⢸
+⠀⠀⠀⢼⠃⠀⠬⠏⠰⠂⠀⠀⠤⠄⠀⠀⠈⠓⢄
+⠀⠀⠀⠉⢧⡀⠀⠀⠀⠀⠀⠈⠢⠀⠀⠀⠀⠀⠈⠱⣄
+⠀⠀⠀⠀⠈⢱⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⣄
+⠀⠀⠀⠀⠀⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⡄
+⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⠀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠘⢦⡀
+⠀⠀⠀⠀⠀⠀⠀⢷⡀⠀⠀⠀⠀⢠⠁⠀⠀⠀⢓⡆⠀⠀⠀⠀⠀⠱⡀
+⠀⠀⠀⠀⠀⠀⠀⡄⠱⣄⠀⠀⠀⢸⠀⠀⠀⠀⠈⢧⠀⠀⠀⠀⠀⠀⠹⡀
+⠀⠀⠀⠀⠀⠀⠀⣇⠀⠈⠳⢤⡀⢸⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⢃
+⠀⠀⠀⠀⠀⠀⠀⠹⡄⠀⢄⣠⠏⠻⡆⠀⡀⠈⢢⡞⠀⠀⠀⠀⠀⠀⠀⢸
+⠀⠀⠀⠀⠀⠀⠀⠀⠙⠤⠜⠁⠀⠀⠹⣄⠑⣤⠞⠲⡀⠀⠀⠀⠀⠀⠀⢸
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣨⠿⠷⠤⣄⡗⠀⠀⠀⠀⠀⢀⠆
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⠑⠒⠒⠉⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⢀⠎
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣄⠀⠀⠀⠀⣴⠤⠒⠀⠀⠀⠀⠀⡾⠁
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠂⣤⠊⠀⠀⠀⠀⠀⠀⠀⢠⠃
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠇⠀⠀⠀⠀⠀⠀⠀⡠⠃
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄⠀⢀⣀⠤⠤⠐⠈
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠤⠋
+
+        Seal has been petted`,
+
+        "sudo fih":
+          "Requesting elevated fih\n" +
+          "ACCESS GRANTED.\n" +
+          "⋆⭒𓆟⋆｡˚𖦹𓆜✩⋆\n" +
+          "The seal is coming for you.",
+
+        scan:
+          "Starting security scan...\n" +
+          "[OK] Firewall: leopard seal\n" +
+          "[OK] Password: probably 'Password'\n" +
+          "[WARN] Too many graphics!\n" +
+          "Scan complete",
+
+        exit:
+          "Session ended\n"
+      };
+
+      function addLine(text, className = "terminal-line") {
+        const line = document.createElement("div");
+        line.className = className;
+        line.textContent = text;
+
+        output.appendChild(line);
+        output.scrollTop = output.scrollHeight;
+      }
+
+      function runCommand(rawCommand) {
+        const command = rawCommand.trim().toLowerCase();
+
+        if (!command) return;
+
+        addLine(
+          "seal@skookie-zone:~$ " + rawCommand,
+          "terminal-line terminal-prompt"
+        );
+
+        if (command === "clear") {
+          output.replaceChildren();
+          return;
+        }
+        
+        if (command === "sudo fih") {
+         currentPermissions = "fih";
+  
+          addLine(responses["sudo fih"]);
+          return;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(responses, command)) {
+         const response = responses[command];
+
+          addLine(
+           typeof response === "function" ? response() : response
+          );
+
+          return;
+        }
+
+        addLine(
+          'Command not found: "' + rawCommand + '"\n' +
+          'Type "help" for available commands'
+        );
+      }
+
+      form.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const command = input.value;
+        input.value = "";
+
+        runCommand(command);
+        input.focus();
+      });
     })();
   </script>
 </body>
