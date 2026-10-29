@@ -466,7 +466,7 @@
       line-height: 1.5;
     }
 
-    /* Stack the layout on smaller screens */
+    /* Stack the layout for phone*/
     @media (max-width: 700px) {
       .intro-layout {
         flex-direction: column;
@@ -541,25 +541,21 @@
   width: 60px;
   height: 60px;
   object-fit: contain;
-  pointer-events: none;
+  pointer-events: auto;
   user-select: none;
+  cursor: pointer;
   will-change: transform;
   animation: beetle-wiggle 0.18s infinite alternate;
 }
-}
 
-@keyframes beetle-wiggle {
-  from { rotate: -18deg; }
-  to { rotate: 18deg; }
-}
- /* Bug splat effect */
+/* Bug splat effect */
 .bug-splat {
   position: fixed;
+  z-index: 10003;
   width: 70px;
   height: 70px;
   object-fit: contain;
   pointer-events: none;
-  z-index: 10001;
   animation: splat-fade 0.7s ease-out forwards;
 }
 
@@ -568,12 +564,10 @@
     opacity: 1;
     transform: scale(0.4);
   }
-
   35% {
     opacity: 1;
     transform: scale(1.2);
   }
-
   100% {
     opacity: 0;
     transform: scale(1.5);
@@ -1053,7 +1047,7 @@ if (sealImage && sealAudio) {
         input.focus();
       });
     })();
-/* buge button */
+/* Buge button */
 (() => {
   const bugButton = document.getElementById("bug-button");
   if (!bugButton) return;
@@ -1066,26 +1060,80 @@ if (sealImage && sealAudio) {
     beetle.draggable = false;
     beetle.setAttribute("aria-hidden", "true");
 
+    // Start the beetle at a random spot
+    let x = Math.random() * Math.max(0, window.innerWidth - 60);
+    let y = Math.random() * Math.max(0, window.innerHeight - 60);
+
+    // Slower movement
+    let vx = (Math.random() - 0.5) * 2 + 0.3;
+    let vy = (Math.random() - 0.5) * 2 + 0.3;
+    let angle = Math.random() * 360;
+    let turnTimer = 0;
+    let squashed = false;
+
     document.body.appendChild(beetle);
-   // Create the splat graphic
-  const splat = document.createElement("img");
-  splat.src = "img/splat.png";
-  splat.className = "bug-splat";
-  splat.alt = "";
-  splat.setAttribute("aria-hidden", "true");
 
-  splat.style.left =
-    `${rect.left + rect.width / 2 - 35}px`;
-  splat.style.top =
-    `${rect.top + rect.height / 2 - 35}px`;
-  beetle.remove();
-  document.body.appendChild(splat);
+    // Click the bug to splat it!
+    beetle.addEventListener("click", (event) => {
+      event.stopPropagation();
 
-  // Remove the splat 
-  setTimeout(() => {
-    splat.remove();
-  }, 700);
-});
+      if (squashed) return;
+      squashed = true;
+
+      const rect = beetle.getBoundingClientRect();
+
+      const splat = document.createElement("img");
+      splat.className = "bug-splat";
+      splat.src = "img/splat.png";
+      splat.alt = "";
+      splat.setAttribute("aria-hidden", "true");
+
+      splat.style.left = `${rect.left + rect.width / 2 - 35}px`;
+      splat.style.top = `${rect.top + rect.height / 2 - 35}px`;
+
+      beetle.remove();
+      document.body.appendChild(splat);
+
+      splat.addEventListener("animationend", () => splat.remove(), {
+        once: true
+      });
+    });
+
+    function fly() {
+      if (!beetle.isConnected || squashed) return;
+
+      x += vx;
+      y += vy;
+      angle += 2;
+      turnTimer++;
+
+      // Change director
+      if (turnTimer > 50 && Math.random() < 0.04) {
+        vx = (Math.random() - 0.5) * 2;
+        vy = (Math.random() - 0.5) * 2;
+        turnTimer = 0;
+      }
+
+      const maxX = Math.max(0, window.innerWidth - beetle.offsetWidth);
+      const maxY = Math.max(0, window.innerHeight - beetle.offsetHeight);
+
+      if (x <= 0 || x >= maxX) vx *= -1;
+      if (y <= 0 || y >= maxY) vy *= -1;
+
+      x = Math.max(0, Math.min(x, maxX));
+      y = Math.max(0, Math.min(y, maxY));
+
+      beetle.style.transform =
+        `translate(${x}px, ${y}px) rotate(${angle}deg)`;
+
+      requestAnimationFrame(fly);
+    }
+
+    requestAnimationFrame(fly);
+  }
+
+  bugButton.addEventListener("click", spawnBeetle);
+})();
 
     let x = Math.random() * Math.max(0, window.innerWidth - 60);
     let y = Math.random() * Math.max(0, window.innerHeight - 60);
