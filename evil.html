@@ -53,6 +53,132 @@
         <p>The Devil from The Bible</p>
       </div>
     </div>
+    
+    <!-- evil soundboard -->
+<div class="evil-soundboard">
+  <h2>Spooky Scary Soundboard</h2>
+
+  <div class="sound-buttons">
+    <button onclick="playEvilSound('spooky-sound')">
+      Spooky Scary Sound
+    </button>
+
+    <button onclick="playEvilSound('freddy-scream')">
+      Don't Get Jumpscared
+    </button>
+
+    <button onclick="playEvilSound('groovy')">
+      when you build your own weapon to fight your dead girlfriend 
+    </button>
+
+    <button onclick="stopEvilSound()">
+      stop
+    </button>
+  </div>
+
+  <p id="sound-status">what shall we do your evilness</p>
+</div>
+
+<style>
+  .evil-soundboard {
+    background: #210D25;
+    color: #FF5555;
+    border: 3px ridge #A020F0;
+    padding: 20px;
+    margin: 20px auto;
+    width: fit-content;
+    max-width: calc(100% - 50px);
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .evil-soundboard h2 {
+    color: #FF5555;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .sound-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .sound-buttons button {
+    background: #4B1458;
+    color: #FFFFFF;
+    border: 2px outset #C050FF;
+    padding: 12px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .sound-buttons button:hover {
+    background: #8B0000;
+    transform: scale(1.05);
+  }
+
+  #sound-status {
+    color: #DCA6FF;
+    background: transparent;
+    border: none;
+    padding: 5px;
+    margin: 12px 0 0;
+  }
+</style>
+
+<script>
+  const evilSounds = {
+    "spooky-sound": "Spooky-sound.wav",
+    "freddy-scream": "freddy scream.wav",
+    "groovy": "groovy.wav"
+  };
+
+  let currentEvilSound = null;
+
+  function playEvilSound(soundName) {
+    const soundPath = evilSounds[soundName];
+    if (!soundPath) return;
+
+    // Stop the sound
+    stopEvilSound();
+
+    currentEvilSound = new Audio(soundPath);
+    const soundToPlay = currentEvilSound;
+
+    document.getElementById("sound-status").textContent =
+      "NOW PLAYING: " + soundName.toUpperCase().replace("-", " ") + "!!!";
+
+    soundToPlay.play().catch(() => {
+      document.getElementById("sound-status").textContent =
+        "Sound failed to play";
+    });
+
+    soundToPlay.addEventListener("ended", () => {
+      if (currentEvilSound === soundToPlay) {
+        currentEvilSound = null;
+        document.getElementById("sound-status").textContent =
+          "what shall we do your evilness";
+      }
+    });
+  }
+
+  function stopEvilSound() {
+    if (currentEvilSound) {
+      currentEvilSound.pause();
+      currentEvilSound.currentTime = 0;
+      currentEvilSound = null;
+    }
+
+    const status = document.getElementById("sound-status");
+    if (status) {
+      status.textContent = "Sound stopped";
+    }
+  }
+</script>
 
     <p><a href="index.html">Back to the homepage</a></p>
   </div>
