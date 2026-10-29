@@ -206,9 +206,9 @@
             1
           );
 
-          silenthill.volume =
-            startVolume +
-            (targetVolume - startVolume) * progress;
+          silenthill.volume = Math.max(0, Math.min(1,
+          startVolume + (targetVolume - startVolume) * progress
+          ));
 
           if (progress < 1) {
             musicFadeFrame = requestAnimationFrame(fadeStep);
