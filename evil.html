@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>EVIL Skookie Zone</title>
+
   <style>
     body {
       background-image: url('img/eartbound.png');
@@ -12,9 +13,12 @@
       text-align: center;
       cursor: url('https://cdn.cursors-4u.net/previews/fleshy-heart-e2b49da1-64.webp') 36 19, auto;
     }
+
     a {
-  cursor: url('https://cdn.cursors-4u.net/previews/fleshy-heart-e2b49da1-64.webp') 36 19, pointer;
+      cursor: url('https://cdn.cursors-4u.net/previews/fleshy-heart-e2b49da1-64.webp') 36 19, pointer;
+      color: lightblue;
     }
+
     .box {
       background-color: gray;
       border: 3px solid black;
@@ -23,24 +27,96 @@
       padding: 20px;
     }
 
-    a {
-      color: lightblue;
-    }
-     .sfDevil-card img {
+    .sfDevil-card img {
       display: block;
       width: 100%;
       max-width: 250px;
       height: auto;
       margin: 0 auto;
+    }
+
+    .evil-layout {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .evil-column {
+      max-width: 200px;
+    }
+
+    .evil-soundboard {
+      background: #210D25;
+      color: #FF5555;
+      border: 3px ridge #A020F0;
+      padding: 20px;
+      margin: 20px auto;
+      width: fit-content;
+      max-width: calc(100% - 50px);
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .evil-soundboard h2 {
+      color: #FF5555;
+      background: transparent;
+      border: none;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .sound-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .sound-buttons button {
+      background: #4B1458;
+      color: white;
+      border: 2px outset #C050FF;
+      padding: 12px;
+      font-family: monospace;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .sound-buttons button:hover {
+      background: #8B0000;
+      transform: scale(1.05);
+    }
+
+    #sound-status {
+      color: #DCA6FF;
+      background: transparent;
+      border: none;
+      padding: 5px;
+      margin: 12px 0 0;
+    }
+
+    #start-silenthill {
+      display: none;
+      background: #210D25;
+      color: #DCA6FF;
+      border: 2px ridge #A020F0;
+      padding: 12px;
+      margin: 12px auto;
+      font-family: monospace;
+      cursor: pointer;
+    }
   </style>
 </head>
+
 <body>
   <div class="box">
     <h1>Welcome to the EVIL Page!! meow</h1>
-    <p>only nefarious things go on here...</p>
 
+    <p>only nefarious things go on here...</p>
     <p>Practice being your EVILEST self</p>
-    
+
     <div class="evil-layout">
       <div class="sfDevil-card">
         <img
@@ -49,272 +125,210 @@
           id="sfDevil-image"
         >
       </div>
-        <div class="evil-column">
+
+      <div class="evil-column">
         <p>The Devil from The Bible</p>
       </div>
     </div>
-    
-    <!-- evil soundboard -->
-<div class="evil-soundboard">
-  <h2>Spooky Scary Soundboard</h2>
 
-  <div class="sound-buttons">
-    <button onclick="playEvilSound('spooky-sound')">
-      AHH!
-    </button>
+    <!-- soundboard -->
+    <div class="evil-soundboard">
+      <h2>Spooky Scary Soundboard</h2>
 
-    <button onclick="playEvilSound('freddy-scream')">
-      Don't Get Jumpscared
-    </button>
+      <div class="sound-buttons">
+        <button onclick="playEvilSound('spooky-sound')">
+          AHH!
+        </button>
 
-    <button onclick="playEvilSound('groovy')">
-      when you build your own weapon to fight your dead girlfriend 
-    </button>
+        <button onclick="playEvilSound('freddy-scream')">
+          Don't Get Jumpscared
+        </button>
 
-    <button onclick="stopEvilSound()">
-      stop
-    </button>
+        <button onclick="playEvilSound('groovy')">
+          when you build your own weapon to fight your dead girlfriend
+        </button>
+
+        <button onclick="stopEvilSound()">
+          stop
+        </button>
+      </div>
+
+      <p id="sound-status">
+        WHAT SHALL WE DO, YOUR EVILNESS?
+      </p>
+    </div>
   </div>
 
-  <p id="sound-status">WHAT SHALL WE DO, YOUR EVILNESS?</p>
-</div>
+  <!-- silent hill music -->
+  <audio id="silenthill" loop preload="auto">
+    <source src="sounds/Mirrored Guilt.wav" type="audio/wav">
+  </audio>
 
-<style>
-  .evil-soundboard {
-    background: #210D25;
-    color: #FF5555;
-    border: 3px ridge #A020F0;
-    padding: 20px;
-    margin: 20px auto;
-    width: fit-content;
-    max-width: calc(100% - 50px);
-    text-align: center;
-    box-sizing: border-box;
-  }
+  <button
+    id="start-silenthill"
+    onclick="startSilentHillMusic()">
+    You feel very confused, there is a thick fog all along the webpage...
+  </button>
 
-  .evil-soundboard h2 {
-    color: #FF5555;
-    background: transparent;
-    border: none;
-    padding: 5px;
-    margin: 5px;
-  }
+  <p><a href="index.html">Back to the homepage</a></p>
 
-  .sound-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+  <script>
+    const evilSounds = {
+      "spooky-sound": "sounds/Spooky-sound.wav",
+      "freddy-scream": "sounds/freddy scream.wav",
+      "groovy": "sounds/groovy.wav"
+    };
 
-  .sound-buttons button {
-    background: #4B1458;
-    color: #FFFFFF;
-    border: 2px outset #C050FF;
-    padding: 12px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+    const silenthill = document.getElementById("silenthill");
+    const startButton = document.getElementById("start-silenthill");
+    const soundStatus = document.getElementById("sound-status");
 
-  .sound-buttons button:hover {
-    background: #8B0000;
-    transform: scale(1.05);
-  }
+    let currentEvilSound = null;
+    let musicFadeFrame = null;
+    let soundRequest = 0;
 
-  #sound-status {
-    color: #DCA6FF;
-    background: transparent;
-    border: none;
-    padding: 5px;
-    margin: 12px 0 0;
-  }
-</style>
+    const musicVolume = 0.4;
 
-<script>
-  const evilSounds = {
-    "spooky-sound": "sounds/Spooky-sound.wav",
-    "freddy-scream": "sounds/freddy scream.wav",
-    "groovy": "sounds/groovy.wav"
-  };
-
-  let currentEvilSound = null;
-
-  function playEvilSound(soundName) {
-    const soundPath = evilSounds[soundName];
-    if (!soundPath) return;
-
-    // Stop the sound
-    stopEvilSound();
-
-    currentEvilSound = new Audio(soundPath);
-    const soundToPlay = currentEvilSound;
-
-    document.getElementById("sound-status").textContent =
-      "NOW PLAYING: " + soundName.toUpperCase().replace("-", " ") + "!!!";
-
-    soundToPlay.play().catch(() => {
-      document.getElementById("sound-status").textContent =
-        "Sound failed to play";
-    });
-
-    soundToPlay.addEventListener("ended", () => {
-      if (currentEvilSound === soundToPlay) {
-        currentEvilSound = null;
-        document.getElementById("sound-status").textContent =
-          "WHAT SHALL WE DO, YOUR EVILNESS?";
-      }
-    });
-  }
-
-  function stopEvilSound() {
-    if (currentEvilSound) {
-      currentEvilSound.pause();
-      currentEvilSound.currentTime = 0;
-      currentEvilSound = null;
-    }
-
-    const status = document.getElementById("sound-status");
-    if (status) {
-      status.textContent = "Sound stopped";
-    }
-  }
-<!-- SILENT HILL BACKGROUND MUSIC -->
-<audio id="silenthill" loop>
-  <source src="sounds/Mirrored Guilt.wav" type="audio/wav">
-</audio>
-
-<button
-  id="start-silenthill"
-  style="display:none;"
-  onclick="startSilentHillMusic()">
-  You feel very confused, there is a thick fog all along the webpage...
-</button>
-
-<script>
-  const evilSounds = {
-    "spooky-sound": "sounds/Spooky-sound.wav",
-    "freddy-scream": "sounds/freddy scream.wav",
-    "groovy": "sounds/groovy.wav"
-  };
-
-  const silenthill = document.getElementById("silenthill");
-  const startButton = document.getElementById("start-silenthill");
-
-  let currentEvilSound = null;
-  let musicFadeFrame = null;
-
-  const musicVolume = 0.4;
-
-  // Fade music 
-  function fadeMusicTo(targetVolume, duration = 700) {
-    return new Promise((resolve) => {
-      if (musicFadeFrame !== null) {
-        cancelAnimationFrame(musicFadeFrame);
-        musicFadeFrame = null;
-      }
-
-      const startVolume = silenthill.volume;
-      const startTime = performance.now();
-
-      function fadeStep(now) {
-        const progress = Math.min((now - startTime) / duration, 1);
-
-        silenthill.volume =
-          startVolume + (targetVolume - startVolume) * progress;
-
-        if (progress < 1) {
-          musicFadeFrame = requestAnimationFrame(fadeStep);
-        } else {
+    // Smoothly fade the background music to a target volume.
+    function fadeMusicTo(targetVolume, duration = 700) {
+      return new Promise((resolve) => {
+        if (musicFadeFrame !== null) {
+          cancelAnimationFrame(musicFadeFrame);
           musicFadeFrame = null;
-          resolve();
+        }
+
+        const startVolume = silenthill.volume;
+        const startTime = performance.now();
+
+        function fadeStep(now) {
+          const progress = Math.min(
+            (now - startTime) / duration,
+            1
+          );
+
+          silenthill.volume =
+            startVolume +
+            (targetVolume - startVolume) * progress;
+
+          if (progress < 1) {
+            musicFadeFrame = requestAnimationFrame(fadeStep);
+          } else {
+            musicFadeFrame = null;
+            resolve();
+          }
+        }
+
+        musicFadeFrame = requestAnimationFrame(fadeStep);
+      });
+    }
+
+    // Start the background music.
+    async function startSilentHillMusic() {
+      silenthill.volume = musicVolume;
+
+      try {
+        await silenthill.play();
+        startButton.style.display = "none";
+      } catch (error) {
+        startButton.style.display = "block";
+        soundStatus.textContent =
+          "The fog is silent... click the music button to awaken it.";
+      }
+    }
+
+    // Fade music
+    async function playEvilSound(soundName) {
+      const soundPath = evilSounds[soundName];
+      if (!soundPath) return;
+
+      const thisRequest = ++soundRequest;
+
+      // Stop the previous sound
+      if (currentEvilSound) {
+        currentEvilSound.pause();
+        currentEvilSound.currentTime = 0;
+        currentEvilSound = null;
+      }
+
+      const effect = new Audio(soundPath);
+      currentEvilSound = effect;
+
+      soundStatus.textContent =
+        "NOW PLAYING: " +
+        soundName.toUpperCase().replace("-", " ") + "!!!";
+
+      if (silenthill.paused) {
+        try {
+          await silenthill.play();
+          startButton.style.display = "none";
+        } catch (error) {
+          startButton.style.display = "block";
         }
       }
 
-      musicFadeFrame = requestAnimationFrame(fadeStep);
-    });
-  }
+      // Fade background music down
+      await fadeMusicTo(0);
 
-  // Start background music
-  async function startSilentHillMusic() {
-    silenthill.volume = musicVolume;
-
-    try {
-      await silenthill.play();
-      startButton.style.display = "none";
-    } catch (error) {
-      startButton.style.display = "inline-block";
-    }
-  }
-
-  // Fade music
-  async function playEvilSound(soundName) {
-    const soundPath = evilSounds[soundName];
-    if (!soundPath) return;
-
-    // Stop sound
-    if (currentEvilSound) {
-      currentEvilSound.pause();
-      currentEvilSound.currentTime = 0;
-      currentEvilSound = null;
-    }
-
-    const effect = new Audio(soundPath);
-    currentEvilSound = effect;
-
-    document.getElementById("sound-status").textContent =
-      "NOW PLAYING: " +
-      soundName.toUpperCase().replace("-", " ") + "!!!";
-
-    // Fade music out 
-    await fadeMusicTo(0);
-
-    if (currentEvilSound !== effect) return;
-
-    try {
-      await effect.play();
-    } catch (error) {
-      document.getElementById("sound-status").textContent =
-        "Sound failed to play! Check the file path.";
-
-      if (currentEvilSound === effect) {
-        currentEvilSound = null;
-        await fadeMusicTo(musicVolume);
+      if (
+        thisRequest !== soundRequest ||
+        currentEvilSound !== effect
+      ) {
+        return;
       }
-      return;
+
+      try {
+        await effect.play();
+      } catch (error) {
+        soundStatus.textContent =
+          "Sound failed to play! Check the filename and path.";
+
+        if (currentEvilSound === effect) {
+          currentEvilSound = null;
+          await fadeMusicTo(musicVolume);
+        }
+        return;
+      }
+
+      // put music back
+      effect.addEventListener("ended", async () => {
+        if (currentEvilSound !== effect) return;
+
+        currentEvilSound = null;
+        soundStatus.textContent =
+          "WHAT SHALL WE DO, YOUR EVILNESS?";
+
+        await fadeMusicTo(musicVolume);
+      }, { once: true });
     }
 
-    effect.addEventListener("ended", async () => {
-      if (currentEvilSound !== effect) return;
+    // stop sound effect
+    async function stopEvilSound() {
+      ++soundRequest;
 
-      currentEvilSound = null;
+      if (currentEvilSound) {
+        currentEvilSound.pause();
+        currentEvilSound.currentTime = 0;
+        currentEvilSound = null;
+      }
 
-      document.getElementById("sound-status").textContent =
-        "WHAT SHALL WE DO, YOUR EVILNESS?";
+      soundStatus.textContent =
+        "Sound stopped. The fog returns...";
 
-      // music comes back
+      if (silenthill.paused) {
+        try {
+          await silenthill.play();
+          startButton.style.display = "none";
+        } catch (error) {
+          startButton.style.display = "block";
+        }
+      }
+
       await fadeMusicTo(musicVolume);
-    }, { once: true });
-  }
-
-  // Stop the sound effect
-  async function stopEvilSound() {
-    if (currentEvilSound) {
-      currentEvilSound.pause();
-      currentEvilSound.currentTime = 0;
-      currentEvilSound = null;
     }
 
-    document.getElementById("sound-status").textContent =
-      "Sound stopped. The fog returns...";
-
-    await fadeMusicTo(musicVolume);
-  }
-
-  // Try to start music when the page loads
-  window.addEventListener("load", () => {
-    startSilentHillMusic();
-  });
-</script>
-    <p><a href="index.html">Back to the homepage</a></p>
+    window.addEventListener("load", () => {
+      startSilentHillMusic();
+    });
+  </script>
 </body>
 </html>
