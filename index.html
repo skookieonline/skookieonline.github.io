@@ -512,6 +512,46 @@
         flex: 0 0 auto;
       }
     }
+    /* Beetle button */
+#bug-button {
+  position: fixed;
+  top: 60px;
+  right: 10px;
+  z-index: 10001;
+  padding: 10px 14px;
+  border: 2px solid #76552C;
+  background: #FFF4C2;
+  color: #76552C;
+  box-shadow: 3px 3px 0 #C99D42;
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  cursor: pointer;
+}
+
+#bug-button:hover {
+  background: #FFE69A;
+}
+
+/* Flying beetles */
+.flying-beetle {
+  position: fixed;
+  z-index: 10002;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+  animation: beetle-wiggle 0.18s infinite alternate;
+}
+}
+
+@keyframes beetle-wiggle {
+  from { rotate: -18deg; }
+  to { rotate: 18deg; }
+}
   </style>
 </head>
 
@@ -519,6 +559,9 @@
   <button id="animation-toggle" type="button" aria-pressed="false">
     Turn Off Animation (˶˃ᆺ˂˶)
   </button>
+  <button id="bug-button" type="button">
+  buge
+</button>
 
   <!-- Main banner -->
   <h1 class="banner">Skookie Zone</h1>
@@ -674,20 +717,21 @@
     document.body.appendChild(counterScript);
 
     /* Seal sound */
-    const sealImage = document.getElementById("seal-image");
-    const sealAudio = document.getElementById("seal-audio");
+const sealImage = document.getElementById("seal-image");
+const sealAudio = document.getElementById("seal-audio");
 
-    sealImage.style.cursor = "pointer";
-
-    sealImage.addEventListener("click", () => {
+if (sealImage && sealAudio) {
+  sealImage.addEventListener("click", async () => {
+    try {
+      sealAudio.pause();
       sealAudio.currentTime = 0;
-
-      sealAudio.play().catch(() => {
-        console.warn(
-          "Seal audio could not be played. Check the audio file path."
-        );
-      });
-    });
+      await sealAudio.play();
+    } catch (error) {
+      console.error("Seal sound failed:", error);
+      alert("The seal sound couldn't play");
+    }
+  });
+}
 
     /* Sparkles, silly messages, and animation toggle */
     (() => {
@@ -982,6 +1026,62 @@
         input.focus();
       });
     })();
+/* buge button */
+(() => {
+  const bugButton = document.getElementById("bug-button");
+  if (!bugButton) return;
+
+  function spawnBeetle() {
+    const beetle = document.createElement("img");
+    beetle.className = "flying-beetle";
+    beetle.src = "img/tiny-beetle.png";
+    beetle.alt = "";
+    beetle.draggable = false;
+    beetle.setAttribute("aria-hidden", "true");
+
+    document.body.appendChild(beetle);
+
+    let x = Math.random() * Math.max(0, window.innerWidth - 60);
+    let y = Math.random() * Math.max(0, window.innerHeight - 60);
+    let vx = (Math.random() - 0.5) * 5 + 1;
+    let vy = (Math.random() - 0.5) * 5 + 1;
+    let angle = Math.random() * 360;
+    let turnTimer = 0;
+
+    function fly() {
+      if (!beetle.isConnected) return;
+
+      x += vx;
+      y += vy;
+      angle += 5;
+      turnTimer++;
+
+      if (turnTimer > 35 && Math.random() < 0.12) {
+        vx = (Math.random() - 0.5) * 6;
+        vy = (Math.random() - 0.5) * 6;
+        turnTimer = 0;
+      }
+
+      const maxX = Math.max(0, window.innerWidth - beetle.offsetWidth);
+      const maxY = Math.max(0, window.innerHeight - beetle.offsetHeight);
+
+      if (x <= 0 || x >= maxX) vx *= -1;
+      if (y <= 0 || y >= maxY) vy *= -1;
+
+      x = Math.max(0, Math.min(x, maxX));
+      y = Math.max(0, Math.min(y, maxY));
+
+      beetle.style.transform =
+        `translate(${x}px, ${y}px) rotate(${angle}deg)`;
+
+      requestAnimationFrame(fly);
+    }
+
+    requestAnimationFrame(fly);
+  }
+
+  bugButton.addEventListener("click", spawnBeetle);
+})();
   </script>
 </body>
 </html>
