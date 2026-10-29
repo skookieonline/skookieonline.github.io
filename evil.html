@@ -224,15 +224,15 @@
 
     // Start the background music.
     async function startSilentHillMusic() {
-      silenthill.volume = musicVolume;
+    silenthill.volume = musicVolume;
 
-      try {
-        await silenthill.play();
-        startButton.style.display = "none";
-      } catch (error) {
-        startButton.style.display = "block";
-        soundStatus.textContent =
-          "The fog is silent... click the music button to awaken it.";
+    try {
+      await silenthill.play();
+      startButton.style.display = "none";
+    } catch (error) {
+      startButton.style.display = "block";
+      soundStatus.textContent =
+      "The fog is silent... click the button to awaken the music.";
       }
     }
 
