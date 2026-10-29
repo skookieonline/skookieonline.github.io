@@ -1134,45 +1134,6 @@ if (sealImage && sealAudio) {
 
   bugButton.addEventListener("click", spawnBeetle);
 })();
-
-    let x = Math.random() * Math.max(0, window.innerWidth - 60);
-    let y = Math.random() * Math.max(0, window.innerHeight - 60);
-    let vx = (Math.random() - 0.5) * 2 + 0.3;
-    let vy = (Math.random() - 0.5) * 2 + 0.3;
-    let angle = Math.random() * 360;
-    let turnTimer = 0;
-
-    function fly() {
-      if (!beetle.isConnected) return;
-
-      x += vx;
-      y += vy;
-      angle += 5;
-      turnTimer++;
-
-      if (turnTimer > 35 && Math.random() < 0.12) {
-        vx = (Math.random() - 0.5) * 2;
-        vy = (Math.random() - 0.5) * 2;
-        turnTimer = 0;
-      }
-
-      const maxX = Math.max(0, window.innerWidth - beetle.offsetWidth);
-      const maxY = Math.max(0, window.innerHeight - beetle.offsetHeight);
-
-      if (x <= 0 || x >= maxX) vx *= -1;
-      if (y <= 0 || y >= maxY) vy *= -1;
-
-      x = Math.max(0, Math.min(x, maxX));
-      y = Math.max(0, Math.min(y, maxY));
-
-      beetle.style.transform =
-        `translate(${x}px, ${y}px) rotate(${angle}deg)`;
-
-      requestAnimationFrame(fly);
-    }
-
-  bugButton.addEventListener("click", spawnBeetle);
-})();
   </script>
 </body>
 </html>
