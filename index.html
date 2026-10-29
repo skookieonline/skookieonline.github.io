@@ -552,6 +552,33 @@
   from { rotate: -18deg; }
   to { rotate: 18deg; }
 }
+ /* Bug splat effect */
+.bug-splat {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 10001;
+  animation: splat-fade 0.7s ease-out forwards;
+}
+
+@keyframes splat-fade {
+  0% {
+    opacity: 1;
+    transform: scale(0.4);
+  }
+
+  35% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
   </style>
 </head>
 
@@ -1040,11 +1067,30 @@ if (sealImage && sealAudio) {
     beetle.setAttribute("aria-hidden", "true");
 
     document.body.appendChild(beetle);
+   // Create the splat graphic
+  const splat = document.createElement("img");
+  splat.src = "img/splat.png";
+  splat.className = "bug-splat";
+  splat.alt = "";
+  splat.setAttribute("aria-hidden", "true");
+
+  splat.style.left =
+    `${rect.left + rect.width / 2 - 35}px`;
+  splat.style.top =
+    `${rect.top + rect.height / 2 - 35}px`;
+  beetle.remove();
+  document.body.appendChild(splat);
+
+  // Remove the splat 
+  setTimeout(() => {
+    splat.remove();
+  }, 700);
+});
 
     let x = Math.random() * Math.max(0, window.innerWidth - 60);
     let y = Math.random() * Math.max(0, window.innerHeight - 60);
-    let vx = (Math.random() - 0.5) * 5 + 1;
-    let vy = (Math.random() - 0.5) * 5 + 1;
+    let vx = (Math.random() - 0.5) * 2 + 0.3;
+    let vy = (Math.random() - 0.5) * 2 + 0.3;
     let angle = Math.random() * 360;
     let turnTimer = 0;
 
@@ -1057,8 +1103,8 @@ if (sealImage && sealAudio) {
       turnTimer++;
 
       if (turnTimer > 35 && Math.random() < 0.12) {
-        vx = (Math.random() - 0.5) * 6;
-        vy = (Math.random() - 0.5) * 6;
+        vx = (Math.random() - 0.5) * 2;
+        vy = (Math.random() - 0.5) * 2;
         turnTimer = 0;
       }
 
