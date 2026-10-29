@@ -60,7 +60,7 @@
 
   <div class="sound-buttons">
     <button onclick="playEvilSound('spooky-sound')">
-      Spooky Scary Sound
+      AHH!
     </button>
 
     <button onclick="playEvilSound('freddy-scream')">
@@ -76,7 +76,7 @@
     </button>
   </div>
 
-  <p id="sound-status">what shall we do your evilness</p>
+  <p id="sound-status">WHAT SHALL WE DO, YOUR EVILNESS?</p>
 </div>
 
 <style>
@@ -161,7 +161,7 @@
       if (currentEvilSound === soundToPlay) {
         currentEvilSound = null;
         document.getElementById("sound-status").textContent =
-          "what shall we do your evilness";
+          "WHAT SHALL WE DO, YOUR EVILNESS?";
       }
     });
   }
@@ -178,9 +178,143 @@
       status.textContent = "Sound stopped";
     }
   }
-</script>
+<!-- SILENT HILL BACKGROUND MUSIC -->
+<audio id="silenthill" loop>
+  <source src="sounds/Mirrored Guilt.wav" type="audio/wav">
+</audio>
 
+<button
+  id="start-silenthill"
+  style="display:none;"
+  onclick="startSilentHillMusic()">
+  You feel very confused, there is a thick fog all along the webpage...
+</button>
+
+<script>
+  const evilSounds = {
+    "spooky-sound": "sounds/Spooky-sound.wav",
+    "freddy-scream": "sounds/freddy scream.wav",
+    "groovy": "sounds/groovy.wav"
+  };
+
+  const silenthill = document.getElementById("silenthill");
+  const startButton = document.getElementById("start-silenthill");
+
+  let currentEvilSound = null;
+  let musicFadeFrame = null;
+
+  const musicVolume = 0.4;
+
+  // Fade music 
+  function fadeMusicTo(targetVolume, duration = 700) {
+    return new Promise((resolve) => {
+      if (musicFadeFrame !== null) {
+        cancelAnimationFrame(musicFadeFrame);
+        musicFadeFrame = null;
+      }
+
+      const startVolume = silenthill.volume;
+      const startTime = performance.now();
+
+      function fadeStep(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+
+        silenthill.volume =
+          startVolume + (targetVolume - startVolume) * progress;
+
+        if (progress < 1) {
+          musicFadeFrame = requestAnimationFrame(fadeStep);
+        } else {
+          musicFadeFrame = null;
+          resolve();
+        }
+      }
+
+      musicFadeFrame = requestAnimationFrame(fadeStep);
+    });
+  }
+
+  // Start background music
+  async function startSilentHillMusic() {
+    silenthill.volume = musicVolume;
+
+    try {
+      await silenthill.play();
+      startButton.style.display = "none";
+    } catch (error) {
+      startButton.style.display = "inline-block";
+    }
+  }
+
+  // Fade music
+  async function playEvilSound(soundName) {
+    const soundPath = evilSounds[soundName];
+    if (!soundPath) return;
+
+    // Stop sound
+    if (currentEvilSound) {
+      currentEvilSound.pause();
+      currentEvilSound.currentTime = 0;
+      currentEvilSound = null;
+    }
+
+    const effect = new Audio(soundPath);
+    currentEvilSound = effect;
+
+    document.getElementById("sound-status").textContent =
+      "NOW PLAYING: " +
+      soundName.toUpperCase().replace("-", " ") + "!!!";
+
+    // Fade music out 
+    await fadeMusicTo(0);
+
+    if (currentEvilSound !== effect) return;
+
+    try {
+      await effect.play();
+    } catch (error) {
+      document.getElementById("sound-status").textContent =
+        "Sound failed to play! Check the file path.";
+
+      if (currentEvilSound === effect) {
+        currentEvilSound = null;
+        await fadeMusicTo(musicVolume);
+      }
+      return;
+    }
+
+    effect.addEventListener("ended", async () => {
+      if (currentEvilSound !== effect) return;
+
+      currentEvilSound = null;
+
+      document.getElementById("sound-status").textContent =
+        "WHAT SHALL WE DO, YOUR EVILNESS?";
+
+      // music comes back
+      await fadeMusicTo(musicVolume);
+    }, { once: true });
+  }
+
+  // Stop the sound effect
+  async function stopEvilSound() {
+    if (currentEvilSound) {
+      currentEvilSound.pause();
+      currentEvilSound.currentTime = 0;
+      currentEvilSound = null;
+    }
+
+    document.getElementById("sound-status").textContent =
+      "Sound stopped. The fog returns...";
+
+    await fadeMusicTo(musicVolume);
+  }
+
+  // Try to start music when the page loads
+  window.addEventListener("load", () => {
+    startSilentHillMusic();
+  });
+</script>
     <p><a href="index.html">Back to the homepage</a></p>
-  </div>
 </body>
 </html>
