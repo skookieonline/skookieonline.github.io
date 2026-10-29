@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,7 +164,6 @@
   <audio id="silenthill" loop preload="auto">
     <source src="sounds/Mirrored Guilt.wav" type="audio/wav">
   </audio>
-
   <button
     id="start-silenthill"
     onclick="startSilentHillMusic()">
@@ -189,7 +189,18 @@
 
     const musicVolume = 0.4;
 
-    // Smoothly fade the background music to a target volume.
+    function updateFogButton() {
+      startButton.style.display =
+        !silenthill.paused && !silenthill.ended
+          ? "block"
+          : "none";
+    }
+
+    silenthill.addEventListener("play", updateFogButton);
+    silenthill.addEventListener("pause", updateFogButton);
+    silenthill.addEventListener("ended", updateFogButton);
+
+    // fade background music
     function fadeMusicTo(targetVolume, duration = 700) {
       return new Promise((resolve) => {
         if (musicFadeFrame !== null) {
@@ -206,13 +217,23 @@
             1
           );
 
-          silenthill.volume = Math.max(0, Math.min(1,
-          startVolume + (targetVolume - startVolume) * progress
-          ));
+          const volume =
+            startVolume +
+            (targetVolume - startVolume) * progress;
+
+          silenthill.volume = Math.max(
+            0,
+            Math.min(1, volume)
+          );
 
           if (progress < 1) {
             musicFadeFrame = requestAnimationFrame(fadeStep);
           } else {
+            silenthill.volume = Math.max(
+              0,
+              Math.min(1, targetVolume)
+            );
+
             musicFadeFrame = null;
             resolve();
           }
@@ -222,28 +243,33 @@
       });
     }
 
-    // Start the background music.
+    // Start music
     async function startSilentHillMusic() {
-    silenthill.volume = musicVolume;
+      silenthill.volume = musicVolume;
 
-    try {
-      await silenthill.play();
-      startButton.style.display = "none";
-    } catch (error) {
-      startButton.style.display = "block";
-      soundStatus.textContent =
-      "The fog is silent... click the button to awaken the music.";
+      try {
+        await silenthill.play();
+
+        updateFogButton();
+
+        soundStatus.textContent =
+          "You feel very confused, there is a thick fog all along the webpage...";
+      } catch (error) {
+        updateFogButton();
+
+        soundStatus.textContent =
+          "The fog is silent... try clicking a soundboard button.";
       }
     }
 
-    // Fade music
+    // Fade music 
     async function playEvilSound(soundName) {
       const soundPath = evilSounds[soundName];
       if (!soundPath) return;
 
       const thisRequest = ++soundRequest;
 
-      // Stop the previous sound
+      // Stop the sound
       if (currentEvilSound) {
         currentEvilSound.pause();
         currentEvilSound.currentTime = 0;
@@ -257,16 +283,17 @@
         "NOW PLAYING: " +
         soundName.toUpperCase().replace("-", " ") + "!!!";
 
+      // Try to start background music
       if (silenthill.paused) {
         try {
           await silenthill.play();
-          startButton.style.display = "none";
+          updateFogButton();
         } catch (error) {
-          startButton.style.display = "block";
+          updateFogButton();
         }
       }
 
-      // Fade background music down
+      // Fade the music 
       await fadeMusicTo(0);
 
       if (
@@ -284,24 +311,29 @@
 
         if (currentEvilSound === effect) {
           currentEvilSound = null;
-          await fadeMusicTo(musicVolume);
+
+          if (!silenthill.paused) {
+            await fadeMusicTo(musicVolume);
+          }
         }
+
         return;
       }
 
-      // put music back
       effect.addEventListener("ended", async () => {
         if (currentEvilSound !== effect) return;
 
         currentEvilSound = null;
+
         soundStatus.textContent =
           "WHAT SHALL WE DO, YOUR EVILNESS?";
 
-        await fadeMusicTo(musicVolume);
+        if (!silenthill.paused) {
+          await fadeMusicTo(musicVolume);
+        }
       }, { once: true });
     }
 
-    // stop sound effect
     async function stopEvilSound() {
       ++soundRequest;
 
@@ -317,9 +349,10 @@
       if (silenthill.paused) {
         try {
           await silenthill.play();
-          startButton.style.display = "none";
+          updateFogButton();
         } catch (error) {
-          startButton.style.display = "block";
+          updateFogButton();
+          return;
         }
       }
 
