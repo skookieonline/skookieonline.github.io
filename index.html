@@ -1074,7 +1074,7 @@ if (sealImage && sealAudio) {
     let wobble = 0;
     let squashed = false;
 
-    const maxSpeed = 1.5;
+    const maxSpeed = 1;
 
     // click to splat
     beetle.addEventListener("click", (event) => {
@@ -1147,7 +1147,7 @@ if (sealImage && sealAudio) {
       x = Math.max(0, Math.min(x, maxX));
       y = Math.max(0, Math.min(y, maxY));
 
-      const degrees = angle * (180 / Math.PI);
+      const degrees = angle * (180 / Math.PI) + 90;
 
       beetle.style.transform =
         `translate(${x}px, ${y}px) rotate(${degrees}deg)`;
@@ -1155,7 +1155,7 @@ if (sealImage && sealAudio) {
       requestAnimationFrame(fly);
     }
     
-    targetSpeed = 0.8 + Math.random() * 0.7;
+    targetSpeed = 0.4 + Math.random() * 0.5;
 
     requestAnimationFrame(fly);
   }
