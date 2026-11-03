@@ -1048,7 +1048,6 @@ if (sealImage && sealAudio) {
       });
     })();
 /* Buge button */
-/* Buge button */
 (() => {
   const bugButton = document.getElementById("bug-button");
   if (!bugButton) return;
@@ -1077,7 +1076,7 @@ if (sealImage && sealAudio) {
 
     const maxSpeed = 3.5;
 
-    // Click the bug to splat it!
+    // click to splat
     beetle.addEventListener("click", (event) => {
       event.stopPropagation();
 
@@ -1109,21 +1108,17 @@ if (sealImage && sealAudio) {
     function fly() {
       if (!beetle.isConnected || squashed) return;
 
-      // Occasionally pause or change direction.
       if (pauseTimer > 0) {
         pauseTimer--;
         speed *= 0.85;
       } else {
-        // Random skittering turns.
         if (Math.random() < 0.025) {
           angle += (Math.random() - 0.5) * 2.8;
         }
 
-        // Sudden little bursts of speed.
         if (Math.random() < 0.035) {
           targetSpeed = 1 + Math.random() * maxSpeed;
 
-          // Sometimes stop briefly before darting away.
           if (Math.random() < 0.2) {
             targetSpeed = 0;
             pauseTimer = 8 + Math.random() * 15;
@@ -1131,10 +1126,8 @@ if (sealImage && sealAudio) {
         }
       }
 
-      // Smoothly accelerate and slow down.
+      // Smoothly accelerate and slow down
       speed += (targetSpeed - speed) * 0.12;
-
-      // Slight sideways wobble.
       wobble += 0.18;
 
       const sideways = Math.sin(wobble) * 0.6;
@@ -1142,7 +1135,7 @@ if (sealImage && sealAudio) {
       x += Math.cos(angle) * speed;
       y += Math.sin(angle) * speed + sideways;
 
-      // Turn away from screen edges instead of bouncing.
+      // Turn away from screen edges
       const maxX = Math.max(0, window.innerWidth - 60);
       const maxY = Math.max(0, window.innerHeight - 60);
 
@@ -1154,7 +1147,6 @@ if (sealImage && sealAudio) {
       x = Math.max(0, Math.min(x, maxX));
       y = Math.max(0, Math.min(y, maxY));
 
-      // Rotate to face the direction of movement.
       const degrees = angle * (180 / Math.PI);
 
       beetle.style.transform =
@@ -1162,8 +1154,7 @@ if (sealImage && sealAudio) {
 
       requestAnimationFrame(fly);
     }
-
-    // Start with a quick little burst.
+    
     targetSpeed = 2 + Math.random() * 2;
 
     requestAnimationFrame(fly);
