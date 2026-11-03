@@ -513,24 +513,29 @@
         flex: 0 0 auto;
       }
     }
-    /* Buge button */
+/* Buge button */
 #bug-button {
   position: fixed;
   top: 60px;
   right: 10px;
   z-index: 10001;
-  padding: 10px 14px;
-  border: 2px solid #76552C;
-  background: #FFF4C2;
-  color: #76552C;
-  box-shadow: 3px 3px 0 #C99D42;
-  font-weight: bold;
+  padding: 8px 12px;
+  border: 2px solid var(--gold);
+  background: var(--cream);
+  color: var(--brown);
+  box-shadow: 3px 3px 0 var(--shadow-gold);
   font-family: "Comic Sans MS", cursive, sans-serif;
+  font-weight: bold;
   cursor: pointer;
 }
 
 #bug-button:hover {
-  background: #FFE69A;
+  background: var(--hover-cream);
+}
+
+#bug-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--shadow-gold);
 }
 
 /* Flying buge */
