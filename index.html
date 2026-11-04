@@ -344,10 +344,13 @@
 
     .things-column ul {
     box-sizing: border-box;
-    width: 100%;
+    width: fit-content;
     max-width: 100%;
-    margin: 15px 0 0;
+    margin: 15px 0;
     padding: 10px 15px 10px 35px;
+    border: 2px solid var(--gold);
+    background: var(--cream);
+    color: var(--brown);
     list-style-position: outside;
     }
 
@@ -483,7 +486,13 @@
         box-sizing: border-box;
         width: 100%;
       }
-
+      
+      .about-me p {
+        width: fit-content;
+        max-width: 100%;
+        margin-left: 0;
+      }
+  
       .things-terminal-layout {
         flex-direction: column;
       }
