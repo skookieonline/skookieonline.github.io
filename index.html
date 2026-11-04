@@ -64,7 +64,7 @@
     .banner::before { margin-bottom: 8px; }
     .banner::after { margin-top: 8px; }
 
-    /* Scrolling welcome message */
+    /* welcome message */
     .marquee-box {
       overflow: hidden;
       margin: 15px;
@@ -259,17 +259,17 @@
       .banner { padding-top: 44px; }
     }
 
-    /* About Me heading */
+    /* About Me and Things headings */
     .about-me h2,
     .things-column h2 {
-    width: auto;
-    max-width: none;
-    margin: 15px 0 10px;
-    padding: 0 0 8px;
-    border: none;
-    border-bottom: 2px dashed var(--gold);
-    background: transparent;
-    color: var(--brown);
+      width: auto;
+      max-width: none;
+      margin: 15px 0 10px;
+      padding: 0 0 8px;
+      border: none;
+      border-bottom: 2px dashed var(--gold);
+      background: transparent;
+      color: var(--brown);
     }
 
     /* Main intro layout */
@@ -323,38 +323,38 @@
     }
 
     .about-content > h2 {
-    margin-top: 15px;
-    margin-left: 0;
+      margin-top: 15px;
+      margin-left: 0;
     }
 
-    /* Things list and terminal side-by-side */
+    /* Things list and terminal */
     .things-terminal-layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    width: 100%;
-    margin-top: 0;
-    margin-left: 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      width: 100%;
+      margin-top: 0;
+      margin-left: 0;
     }
 
     .things-column {
-    flex: 0 0 38%;
-    min-width: 0;
+      flex: 0 0 38%;
+      min-width: 0;
     }
 
     .things-column ul {
-    box-sizing: border-box;
-    width: fit-content;
-    max-width: 100%;
-    margin: 15px 0;
-    padding: 10px 15px 10px 35px;
-    border: 2px solid var(--gold);
-    background: var(--cream);
-    color: var(--brown);
-    list-style-position: outside;
+      box-sizing: border-box;
+      width: calc(100% - 15px);
+      max-width: 100%;
+      margin: 15px 0 0 15px;
+      padding: 10px 15px 10px 35px;
+      border: 2px solid var(--gold);
+      background: var(--cream);
+      color: var(--brown);
+      list-style-position: outside;
     }
 
-    /* Cybersecurity terminal */
+    /* terminal */
     .cyber-terminal {
       box-sizing: border-box;
       flex: 1;
@@ -368,7 +368,7 @@
       background: var(--cream);
       color: var(--brown);
       box-shadow: 5px 5px 0 var(--shadow-gold);
-      }
+    }
 
     .terminal-titlebar {
       display: flex;
@@ -471,7 +471,7 @@
       line-height: 1.5;
     }
 
-    /* Stack the layout for phone*/
+    /* Stack the layout for phones */
     @media (max-width: 700px) {
       .intro-layout {
         flex-direction: column;
@@ -486,13 +486,13 @@
         box-sizing: border-box;
         width: 100%;
       }
-      
+
       .about-me p {
         width: fit-content;
-        max-width: 100%;
-        margin-left: 0;
+        max-width: calc(100% - 15px);
+        margin-left: 15px;
       }
-  
+
       .things-terminal-layout {
         flex-direction: column;
       }
@@ -503,6 +503,11 @@
         flex: auto;
         width: 100%;
         max-width: 100%;
+      }
+
+      .things-column ul {
+        width: calc(100% - 15px);
+        margin-left: 15px;
       }
 
       .terminal-form {
@@ -523,71 +528,72 @@
         flex: 0 0 auto;
       }
     }
-/* Buge button */
-#bug-button {
-  position: fixed;
-  top: 60px;
-  right: 10px;
-  z-index: 10001;
-  padding: 8px 12px;
-  border: 2px solid var(--gold);
-  background: var(--cream);
-  color: var(--brown);
-  box-shadow: 3px 3px 0 var(--shadow-gold);
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-weight: bold;
-  cursor: pointer;
-}
 
-#bug-button:hover {
-  background: var(--hover-cream);
-}
+    /* Buge button */
+    #bug-button {
+      position: fixed;
+      top: 60px;
+      right: 10px;
+      z-index: 10001;
+      padding: 8px 12px;
+      border: 2px solid var(--gold);
+      background: var(--cream);
+      color: var(--brown);
+      box-shadow: 3px 3px 0 var(--shadow-gold);
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-#bug-button:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 var(--shadow-gold);
-}
+    #bug-button:hover {
+      background: var(--hover-cream);
+    }
 
-/* Flying buge */
-.flying-beetle {
-  position: fixed;
-  z-index: 10002;
-  left: 0;
-  top: 0;
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  pointer-events: auto;
-  user-select: none;
-  cursor: pointer;
-  will-change: transform;
-}
+    #bug-button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--shadow-gold);
+    }
 
-/* Buge splat effect */
-.bug-splat {
-  position: fixed;
-  z-index: 10003;
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
-  pointer-events: none;
-  animation: splat-fade 0.7s ease-out forwards;
-}
+    /* Flying buge */
+    .flying-beetle {
+      position: fixed;
+      z-index: 10002;
+      left: 0;
+      top: 0;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      pointer-events: auto;
+      user-select: none;
+      cursor: pointer;
+      will-change: transform;
+    }
 
-@keyframes splat-fade {
-  0% {
-    opacity: 1;
-    transform: scale(0.4);
-  }
-  35% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-}
+    /* Buge splat effect */
+    .bug-splat {
+      position: fixed;
+      z-index: 10003;
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      pointer-events: none;
+      animation: splat-fade 0.7s ease-out forwards;
+    }
+
+    @keyframes splat-fade {
+      0% {
+        opacity: 1;
+        transform: scale(0.4);
+      }
+      35% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.5);
+      }
+    }
   </style>
 </head>
 
@@ -595,14 +601,13 @@
   <button id="animation-toggle" type="button" aria-pressed="false">
     Turn Off Animation (˶˃ᆺ˂˶)
   </button>
-  <button id="bug-button" type="button">
-  buge
-</button>
+
+  <button id="bug-button" type="button">buge</button>
 
   <!-- Main banner -->
   <h1 class="banner">Skookie Zone</h1>
 
-  <!-- Scrolling welcome message -->
+  <!-- welcome message -->
   <div class="marquee-box" aria-label="Welcome message">
     <div class="marquee-text">
       :3c WELCOME TO SKOOKIE ZONE! STAY A WHILE! :3c
@@ -611,7 +616,6 @@
 
   <!-- About Me and seal -->
   <div class="intro-layout">
-
     <div class="left-column">
       <!-- Visitor counter -->
       <div class="visitor-counter">
@@ -656,10 +660,8 @@
           on fixing it!
         </p>
       </section>
-
-      <!-- Things list on the left, terminal on the right -->
+      
       <div class="things-terminal-layout">
-
         <section class="things-column">
           <h2>Things I think are Pretty Cool</h2>
 
@@ -672,9 +674,8 @@
           </ul>
         </section>
 
-        <!-- Cozy cybersecurity terminal -->
+        <!-- terminal -->
         <section class="cyber-terminal" aria-label="SkookieOS terminal">
-
           <div class="terminal-titlebar">
             <span>skookie-terminal.exe</span>
             <span class="terminal-lights" aria-hidden="true">● ● ●</span>
@@ -706,16 +707,13 @@
               required
             >
 
-            <button class="terminal-submit" type="submit">
-              Run
-            </button>
+            <button class="terminal-submit" type="submit">Run</button>
           </form>
 
           <p class="terminal-hint">
             Try: <strong>help</strong>, <strong>whoami</strong>,
             <strong>pet seal</strong>, or <strong>sudo fih</strong>
           </p>
-
         </section>
       </div>
     </div>
@@ -753,23 +751,22 @@
     document.body.appendChild(counterScript);
 
     /* Seal sound */
-const sealImage = document.getElementById("seal-image");
-const sealAudio = document.getElementById("seal-audio");
+    const sealImage = document.getElementById("seal-image");
+    const sealAudio = document.getElementById("seal-audio");
 
-if (sealImage && sealAudio) {
-  sealImage.addEventListener("click", async () => {
-    try {
-      sealAudio.pause();
-      sealAudio.currentTime = 0;
-      await sealAudio.play();
-    } catch (error) {
-      console.error("Seal sound failed:", error);
-      alert("The seal sound couldn't play");
+    if (sealImage && sealAudio) {
+      sealImage.addEventListener("click", async () => {
+        try {
+          sealAudio.pause();
+          sealAudio.currentTime = 0;
+          await sealAudio.play();
+        } catch (error) {
+          console.error("Seal sound failed:", error);
+          alert("The seal sound couldn't play");
+        }
+      });
     }
-  });
-}
 
-    /* Sparkles, silly messages, and animation toggle */
     (() => {
       const symbols = [
         "✦", "✧", "★", "☆", "⋆", "♡", "୨୧", "!!", "?!",
@@ -942,8 +939,9 @@ if (sealImage && sealAudio) {
       const output = document.getElementById("terminal-output");
 
       if (!form || !input || !output) return;
-      
+
       let currentPermissions = "user";
+
       const responses = {
         help: [
           "AVAILABLE COMMANDS:",
@@ -958,18 +956,17 @@ if (sealImage && sealAudio) {
 
         whoami: function() {
           return "You are a visitor of Skookie Zone\n" +
-          "Role: Honorary bro\n" +
-          "Permissions: " + currentPermissions;
+            "Role: Honorary bro\n" +
+            "Permissions: " + currentPermissions;
         },
 
-        
-         "pet seal": `⠀⠀
+        "pet seal": `⠀⠀
    ⠀⠀⠀⢀⣠⠤⠤⠤⠤⠤⢤⣀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⢀⡴⠋⠀⠀⠀⠀⠀⠀⠀⠈⢣⡀
 ⠀⠀⠀⠀⣸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢷
 ⠀⠀⠀⠀⡏⣾⠧⠤⠀⠸⣿⡗⢀⡀⠀⠀⢸
 ⠀⠀⠀⢼⠃⠀⠬⠏⠰⠂⠀⠀⠤⠄⠀⠀⠈⠓⢄
-⠀⠀⠀⠉⢧⡀⠀⠀⠀⠀⠀⠈⠢⠀⠀⠀⠀⠀⠈⠱⣄
+⠀⠀⠀⠉⢧⡀⠀⠀⠀⠀⠀⠈⢢⠀⠀⠀⠀⠀⠈⠱⣄
 ⠀⠀⠀⠀⠈⢱⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⣄
 ⠀⠀⠀⠀⠀⠀⠈⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⡄
 ⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀⠀⠀⠀⠀⠀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠘⢦⡀
@@ -1028,19 +1025,18 @@ if (sealImage && sealAudio) {
           output.replaceChildren();
           return;
         }
-        
+
         if (command === "sudo fih") {
-         currentPermissions = "fih";
-  
+          currentPermissions = "fih";
           addLine(responses["sudo fih"]);
           return;
         }
 
         if (Object.prototype.hasOwnProperty.call(responses, command)) {
-         const response = responses[command];
+          const response = responses[command];
 
           addLine(
-           typeof response === "function" ? response() : response
+            typeof response === "function" ? response() : response
           );
 
           return;
@@ -1062,122 +1058,121 @@ if (sealImage && sealAudio) {
         input.focus();
       });
     })();
-/* Buge button */
-(() => {
-  const bugButton = document.getElementById("bug-button");
-  if (!bugButton) return;
 
-  function spawnBeetle() {
-    const beetle = document.createElement("img");
+    /* Buge button */
+    (() => {
+      const bugButton = document.getElementById("bug-button");
+      if (!bugButton) return;
 
-    beetle.className = "flying-beetle";
-    beetle.src = "img/tiny-beetle.png";
-    beetle.alt = "";
-    beetle.draggable = false;
-    beetle.setAttribute("aria-hidden", "true");
+      function spawnBeetle() {
+        const beetle = document.createElement("img");
 
-    document.body.appendChild(beetle);
+        beetle.className = "flying-beetle";
+        beetle.src = "img/tiny-beetle.png";
+        beetle.alt = "";
+        beetle.draggable = false;
+        beetle.setAttribute("aria-hidden", "true");
 
-    let x = Math.random() * Math.max(0, window.innerWidth - 60);
-    let y = Math.random() * Math.max(0, window.innerHeight - 60);
+        document.body.appendChild(beetle);
 
-    let angle = Math.random() * Math.PI * 2;
-    let speed = 0;
-    let targetSpeed = 0;
-    let turnAmount = 0;
-    let pauseTimer = 0;
-    let wobble = 0;
-    let squashed = false;
+        let x = Math.random() * Math.max(0, window.innerWidth - 60);
+        let y = Math.random() * Math.max(0, window.innerHeight - 60);
 
-    const maxSpeed = .6;
+        let angle = Math.random() * Math.PI * 2;
+        let speed = 0;
+        let targetSpeed = 0;
+        let pauseTimer = 0;
+        let wobble = 0;
+        let squashed = false;
 
-    // click to splat
-    beetle.addEventListener("click", (event) => {
-      event.stopPropagation();
+        const maxSpeed = .6;
 
-      if (squashed) return;
-      squashed = true;
+        // Click to splat
+        beetle.addEventListener("click", (event) => {
+          event.stopPropagation();
 
-      const rect = beetle.getBoundingClientRect();
+          if (squashed) return;
+          squashed = true;
 
-      const splat = document.createElement("img");
-      splat.className = "bug-splat";
-      splat.src = "img/splat.png";
-      splat.alt = "";
-      splat.setAttribute("aria-hidden", "true");
+          const rect = beetle.getBoundingClientRect();
 
-      splat.style.left =
-        `${rect.left + rect.width / 2 - 35}px`;
+          const splat = document.createElement("img");
+          splat.className = "bug-splat";
+          splat.src = "img/splat.png";
+          splat.alt = "";
+          splat.setAttribute("aria-hidden", "true");
 
-      splat.style.top =
-        `${rect.top + rect.height / 2 - 35}px`;
+          splat.style.left =
+            `${rect.left + rect.width / 2 - 35}px`;
 
-      beetle.remove();
-      document.body.appendChild(splat);
+          splat.style.top =
+            `${rect.top + rect.height / 2 - 35}px`;
 
-      splat.addEventListener("animationend", () => {
-        splat.remove();
-      }, { once: true });
-    });
+          beetle.remove();
+          document.body.appendChild(splat);
 
-    function fly() {
-      if (!beetle.isConnected || squashed) return;
+          splat.addEventListener("animationend", () => {
+            splat.remove();
+          }, { once: true });
+        });
 
-      if (pauseTimer > 0) {
-        pauseTimer--;
-        speed *= 0.85;
-      } else {
-        if (Math.random() < 0.025) {
-          angle += (Math.random() - 0.5) * 2.8;
-        }
+        function fly() {
+          if (!beetle.isConnected || squashed) return;
 
-        if (Math.random() < 0.035) {
-          targetSpeed = 1 + Math.random() * maxSpeed;
+          if (pauseTimer > 0) {
+            pauseTimer--;
+            speed *= 0.85;
+          } else {
+            if (Math.random() < 0.025) {
+              angle += (Math.random() - 0.5) * 2.8;
+            }
 
-          if (Math.random() < 0.2) {
-            targetSpeed = 0;
-            pauseTimer = 8 + Math.random() * 15;
+            if (Math.random() < 0.035) {
+              targetSpeed = 1 + Math.random() * maxSpeed;
+
+              if (Math.random() < 0.2) {
+                targetSpeed = 0;
+                pauseTimer = 8 + Math.random() * 15;
+              }
+            }
           }
+
+          // accelerate and slow down
+          speed += (targetSpeed - speed) * 0.12;
+          wobble += 0.18;
+
+          const sideways = Math.sin(wobble) * 0.6;
+
+          x += Math.cos(angle) * speed;
+          y += Math.sin(angle) * speed + sideways;
+
+          // Turn away from screen edges
+          const maxX = Math.max(0, window.innerWidth - 60);
+          const maxY = Math.max(0, window.innerHeight - 60);
+
+          if (x < 10) angle = Math.random() * 1.2 - 0.6;
+          if (x > maxX - 10) angle = Math.PI + (Math.random() - 0.5);
+          if (y < 10) angle = Math.PI / 2 + (Math.random() - 0.5);
+          if (y > maxY - 10) angle = -Math.PI / 2 + (Math.random() - 0.5);
+
+          x = Math.max(0, Math.min(x, maxX));
+          y = Math.max(0, Math.min(y, maxY));
+
+          const degrees = angle * (180 / Math.PI) + 90;
+
+          beetle.style.transform =
+            `translate(${x}px, ${y}px) rotate(${degrees}deg)`;
+
+          requestAnimationFrame(fly);
         }
+
+        targetSpeed = 0.2 + Math.random() * 0.3;
+
+        requestAnimationFrame(fly);
       }
 
-      // Smoothly accelerate and slow down
-      speed += (targetSpeed - speed) * 0.12;
-      wobble += 0.18;
-
-      const sideways = Math.sin(wobble) * 0.6;
-
-      x += Math.cos(angle) * speed;
-      y += Math.sin(angle) * speed + sideways;
-
-      // Turn away from screen edges
-      const maxX = Math.max(0, window.innerWidth - 60);
-      const maxY = Math.max(0, window.innerHeight - 60);
-
-      if (x < 10) angle = Math.random() * 1.2 - 0.6;
-      if (x > maxX - 10) angle = Math.PI + (Math.random() - 0.5);
-      if (y < 10) angle = Math.PI / 2 + (Math.random() - 0.5);
-      if (y > maxY - 10) angle = -Math.PI / 2 + (Math.random() - 0.5);
-
-      x = Math.max(0, Math.min(x, maxX));
-      y = Math.max(0, Math.min(y, maxY));
-
-      const degrees = angle * (180 / Math.PI) + 90;
-
-      beetle.style.transform =
-        `translate(${x}px, ${y}px) rotate(${degrees}deg)`;
-
-      requestAnimationFrame(fly);
-    }
-    
-    targetSpeed = 0.2 + Math.random() * 0.3;
-
-    requestAnimationFrame(fly);
-  }
-
-  bugButton.addEventListener("click", spawnBeetle);
-})();
-
+      bugButton.addEventListener("click", spawnBeetle);
+    })();
   </script>
 </body>
 </html>
