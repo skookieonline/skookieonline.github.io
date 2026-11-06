@@ -17,16 +17,33 @@
       cursor: default;
     }
 
-    p {
+    .safe-message {
       font-size: 28px;
       letter-spacing: 3px;
+    }
+
+    .home-link {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .home-link a {
+      color: #C5D8B5;
+    }
+
+    .home-link a:hover {
+      color: white;
     }
   </style>
 </head>
 
 <body>
 
-  <p>you are safe</p>
+  <p class="safe-message">you are safe</p>
 
   <audio id="safe-haven" autoplay loop>
     <source src="sounds/Safe-Haven.wav" type="audio/wav">
@@ -37,9 +54,12 @@
 
     music.volume = 0.4;
 
-    // Try to start the music when the page opens
     music.play().catch(() => {
     });
   </script>
+
+  <p class="home-link">
+    <a href="index.html">Back to the homepage</a>
+  </p>
 </body>
 </html>
