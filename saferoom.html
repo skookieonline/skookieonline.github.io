@@ -4,29 +4,39 @@
   <title>Safe Room</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background-color: #101B16;
       color: #C5D8B5;
       font-family: monospace;
       margin: 0;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      min-height: 100dvh;
       text-align: center;
       cursor: default;
     }
 
+    /* Centered safe message */
     .safe-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-size: 28px;
       letter-spacing: 3px;
+      margin: 0;
     }
 
+    /* Homepage link at the bottom */
     .home-link {
-      position: absolute;
+      position: fixed;
       bottom: 20px;
       left: 0;
-      right: 0;
+      width: 100%;
+      margin: 0;
       text-align: center;
       font-size: 14px;
     }
@@ -39,7 +49,7 @@
       color: white;
     }
 
-    /* Full-screen video */
+    /* Full-screen video intro */
     #intro {
       position: fixed;
       inset: 0;
@@ -47,10 +57,12 @@
       height: 100%;
       background: #000;
       z-index: 9999;
+      opacity: 1;
       transition: opacity 1.5s ease;
     }
 
     #intro video {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -65,18 +77,18 @@
 
 <body>
 
-  <!-- Door video -->
+  <!-- Full-screen door video -->
   <div id="intro">
-    <video autoplay muted playsinline>
+    <video id="door-video" autoplay muted playsinline preload="auto">
       <source src="sounds/door.mp4" type="video/mp4">
       Your browser does not support this video.
     </video>
   </div>
 
-  <!-- Message -->
+  <!-- Safe room message -->
   <p class="safe-message">you are safe</p>
 
-  <!-- Music -->
+  <!-- Safe room music -->
   <audio id="safe-haven" autoplay loop>
     <source src="sounds/Safe-Haven.wav" type="audio/wav">
   </audio>
@@ -93,14 +105,19 @@
     music.volume = 0.4;
 
     music.play().catch(() => {
-      // Browser may block autoplay.
+      // Browser may block audio autoplay.
     });
 
-    // Video intro
+    // Door video intro
     const intro = document.getElementById("intro");
-    const introVideo = intro.querySelector("video");
+    const introVideo = document.getElementById("door-video");
+
+    let introEnded = false;
 
     function endIntro() {
+      if (introEnded) return;
+
+      introEnded = true;
       intro.classList.add("fade-out");
 
       setTimeout(() => {
@@ -111,10 +128,12 @@
     // Fade out when the video finishes
     introVideo.addEventListener("ended", endIntro);
 
-    // If the video cannot play, don't leave the screen covered
+    // Skip intro if the video cannot load
     introVideo.addEventListener("error", endIntro);
 
-    introVideo.play().catch(() => {
+    // Start video playback
+    introVideo.play().catch((error) => {
+      console.log("Video playback failed:", error);
       endIntro();
     });
   </script>
